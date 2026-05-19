@@ -1749,10 +1749,10 @@
                       stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <a href="mailto:support@auraagencia.net"
+            <a href="mailto:support@auruscortexia.com"
                style="font-size:.9rem;color:#9CA3AF;text-decoration:none;transition:color .2s ease;"
                onmouseover="this.style.color='#C8FF3E'" onmouseout="this.style.color='#9CA3AF'">
-              support@auraagencia.net
+              support@auruscortexia.com
             </a>
           </div>
           <!-- Phone -->
@@ -1826,6 +1826,12 @@
         <form id="contact-form"
               onsubmit="handleSubmit(event)"
               style="display:flex;flex-direction:column;gap:12px;">
+
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value="f174a541-af41-4754-981c-c0761868d5a2">
+          <input type="hidden" name="subject" value="Nuevo contacto desde auruscortexia.com">
+          <input type="hidden" name="from_name" value="AurusCortexIA Website">
+          <input type="hidden" name="redirect" value="false">
 
           <!-- Name + Email -->
           <div style="display:grid;grid-template-columns:1fr;gap:12px;"
@@ -2295,13 +2301,46 @@ document.querySelectorAll('[data-count]').forEach(function(el) {
   counterObs.observe(el);
 });
 
-/* ── FORM SUBMIT ───────────────────────────────────────────── */
-function handleSubmit(e){
+/* ── FORM SUBMIT → Web3Forms ───────────────────────────────── */
+function handleSubmit(e) {
   e.preventDefault();
-  var s = document.getElementById('form-success');
-  s.style.display='block';
-  e.target.reset();
-  setTimeout(function(){ s.style.display='none'; }, 5000);
+  var form    = e.target;
+  var btn     = form.querySelector('[type="submit"]');
+  var success = document.getElementById('form-success');
+  var t       = T[currentLang];
+
+  /* Feedback de carga */
+  var origText = btn.textContent;
+  btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+  btn.disabled = true;
+
+  var data = new FormData(form);
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: data
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json.success) {
+      success.style.display = 'block';
+      form.reset();
+      setTimeout(function() { success.style.display = 'none'; }, 6000);
+    } else {
+      alert(currentLang === 'es'
+        ? 'Error al enviar. Intenta de nuevo.'
+        : 'Send error. Please try again.');
+    }
+  })
+  .catch(function() {
+    alert(currentLang === 'es'
+      ? 'Sin conexión. Revisa tu internet e intenta de nuevo.'
+      : 'No connection. Check your internet and try again.');
+  })
+  .finally(function() {
+    btn.textContent = origText;
+    btn.disabled = false;
+  });
 }
 
 /* ── INIT ──────────────────────────────────────────────────── */
