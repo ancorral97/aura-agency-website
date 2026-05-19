@@ -1836,10 +1836,10 @@
           <!-- Name + Email -->
           <div style="display:grid;grid-template-columns:1fr;gap:12px;"
                class="sm-2col">
-            <input type="text" class="field" required
+            <input type="text" name="Nombre" class="field" required
                    data-i18n-placeholder="form_name"
                    placeholder="Tu nombre">
-            <input type="email" class="field" required
+            <input type="email" name="Email" class="field" required
                    data-i18n-placeholder="form_email"
                    placeholder="Correo electrónico">
           </div>
@@ -1847,28 +1847,27 @@
           <!-- Company + Phone -->
           <div style="display:grid;grid-template-columns:1fr;gap:12px;"
                class="sm-2col">
-            <input type="text" class="field"
+            <input type="text" name="Empresa" class="field"
                    data-i18n-placeholder="form_company"
                    placeholder="Empresa (opcional)">
-            <input type="tel" class="field"
+            <input type="tel" name="Teléfono / WhatsApp" class="field"
                    data-i18n-placeholder="form_phone_field"
                    placeholder="WhatsApp / Teléfono">
           </div>
 
           <!-- Service -->
-          <select class="field" required
+          <select name="Servicio de interés" class="field" required
                   data-i18n-select="form_service_opts">
             <option value="" disabled selected>¿Qué servicio te interesa?</option>
             <option>Facebook &amp; Instagram Ads</option>
             <option>Google Ads</option>
-            <option>Video Ads</option>
             <option>Página Web</option>
-            <option>Paquete completo</option>
+            <option>Paquete completo (Ads + Web)</option>
             <option>Tengo dudas / Quiero información</option>
           </select>
 
           <!-- Message -->
-          <textarea class="field" rows="4" required
+          <textarea name="Mensaje" class="field" rows="4" required
                     data-i18n-placeholder="form_message"
                     placeholder="Cuéntanos sobre tu negocio o proyecto..."
                     style="resize:vertical;min-height:110px;"></textarea>
