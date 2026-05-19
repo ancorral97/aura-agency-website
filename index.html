@@ -1158,8 +1158,9 @@
     <nav id="desk-nav" style="display:none;align-items:center;gap:44px;">
       <a href="#servicios" class="nav-a" data-i18n="nav_services">Servicios</a>
       <a href="#precios"   class="nav-a" data-i18n="nav_pricing">Precios</a>
-      <a href="#portafolio" class="nav-a" data-i18n="nav_portfolio">Portafolio</a>
-      <a href="#nosotros"  class="nav-a" data-i18n="nav_about">Nosotros</a>
+      <a href="#proceso"   class="nav-a" data-i18n="nav_process">Proceso</a>
+      <a href="#faq"       class="nav-a">FAQ</a>
+      <a href="#fundador"  class="nav-a" data-i18n="nav_founder">Nosotros</a>
       <a href="#contacto"  class="nav-a" data-i18n="nav_contact">Contacto</a>
     </nav>
 
@@ -1219,8 +1220,10 @@
 <div id="mob-nav" class="mob-nav" aria-hidden="true">
   <a href="#servicios" class="mob-a" data-i18n="nav_services" onclick="closeMenu()">Servicios</a>
   <a href="#precios"   class="mob-a" data-i18n="nav_pricing"  onclick="closeMenu()">Precios</a>
+  <a href="#proceso"   class="mob-a" data-i18n="nav_process"  onclick="closeMenu()">Proceso</a>
   <a href="#portafolio" class="mob-a" data-i18n="nav_portfolio" onclick="closeMenu()">Portafolio</a>
-  <a href="#nosotros"  class="mob-a" data-i18n="nav_about"    onclick="closeMenu()">Nosotros</a>
+  <a href="#faq"       class="mob-a"                          onclick="closeMenu()">FAQ</a>
+  <a href="#fundador"  class="mob-a" data-i18n="nav_founder"  onclick="closeMenu()">Nosotros</a>
   <a href="#contacto"  class="mob-a" data-i18n="nav_contact"  onclick="closeMenu()">Contacto</a>
   <a href="#contacto"  class="btn-lime"
      style="margin-top:28px;text-align:center;width:100%;"
@@ -1312,7 +1315,7 @@
         <span class="stat-pill-label" data-i18n="hero_pill2">Proyectos</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-pill-num">6</span>
+        <span class="stat-pill-num">+6</span>
         <span class="stat-pill-label" data-i18n="hero_pill3">Años de Exp.</span>
       </div>
     </div>
@@ -2272,7 +2275,7 @@
              data-i18n="stat2_label">Proyectos Completados</div>
       </div>
       <div style="text-align:center;" class="reveal-scale rd3">
-        <div class="big-num" data-count="6" data-suffix="">6</div>
+        <div class="big-num" data-count="6" data-prefix="+" data-suffix="">+6</div>
         <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
              data-i18n="stat3_label">Años de Experiencia</div>
       </div>
@@ -2738,8 +2741,10 @@
                     text-transform:uppercase;color:#F0F0EA;margin-bottom:16px;"
              data-i18n="footer_col_company">Empresa</p>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-            <li><a href="#nosotros"  class="f-link" data-i18n="nav_about">Nosotros</a></li>
+            <li><a href="#fundador"  class="f-link" data-i18n="nav_founder">Nosotros</a></li>
+            <li><a href="#proceso"   class="f-link" data-i18n="nav_process">Proceso</a></li>
             <li><a href="#portafolio"class="f-link" data-i18n="nav_portfolio">Portafolio</a></li>
+            <li><a href="#faq"       class="f-link">FAQ</a></li>
             <li><a href="#contacto"  class="f-link" data-i18n="nav_contact">Contacto</a></li>
           </ul>
         </div>
@@ -2769,7 +2774,7 @@
 const T = {
   es: {
     nav_services:'Servicios', nav_portfolio:'Portafolio',
-    nav_pricing:'Precios', nav_about:'Nosotros', nav_contact:'Contacto', nav_cta:'Contáctanos',
+    nav_pricing:'Precios', nav_process:'Proceso', nav_founder:'Nosotros', nav_about:'Nosotros', nav_contact:'Contacto', nav_cta:'Contáctanos',
 
     hero_meta:'Meta Certified',
     hero_h1:'Más clientes,<br><span style="color:#C8FF3E;">más ventas.</span>',
@@ -2885,7 +2890,7 @@ const T = {
     stat0_label:'En publicidad manejada',
     stat1_num:'40+',  stat1_label:'Clientes Activos',
     stat2_num:'200+', stat2_label:'Proyectos Completados',
-    stat3_num:'6',    stat3_label:'Años de Experiencia',
+    stat3_num:'+6',   stat3_label:'Años de Experiencia',
     stat4_num:'97%', stat4_label:'Tasa de Satisfacción',
 
     contact_label:'CONTACTO',
@@ -2911,7 +2916,7 @@ const T = {
   },
   en: {
     nav_services:'Services', nav_portfolio:'Portfolio',
-    nav_pricing:'Pricing', nav_about:'About', nav_contact:'Contact', nav_cta:'Contact Us',
+    nav_pricing:'Pricing', nav_process:'Process', nav_founder:'About', nav_about:'About', nav_contact:'Contact', nav_cta:'Contact Us',
 
     hero_meta:'Meta Certified',
     hero_h1:'More clients,<br><span style="color:#C8FF3E;">more sales.</span>',
