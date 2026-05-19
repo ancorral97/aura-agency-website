@@ -816,6 +816,35 @@
     .ad5 { animation-delay: .62s; }
 
     /* ─────────────────────────────────────────
+       REVIEWS CAROUSEL
+    ───────────────────────────────────────── */
+    .c-viewport { overflow: hidden; }
+    .c-track {
+      display: flex;
+      gap: 16px;
+      transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+      will-change: transform;
+    }
+    /* Mobile: 1 card visible */
+    .c-item { flex: 0 0 100%; min-width: 0; }
+    /* Desktop: 3 cards visible */
+    @media (min-width: 768px) {
+      .c-item { flex: 0 0 calc((100% - 32px) / 3); }
+    }
+    .c-dots {
+      display: flex; justify-content: center;
+      gap: 8px; margin-top: 32px;
+    }
+    .c-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: none; cursor: pointer; padding: 0;
+      transition: background .25s ease, transform .25s ease;
+    }
+    .c-dot.active { background: #C8FF3E; transform: scale(1.4); }
+    .c-dot:hover:not(.active) { background: rgba(255,255,255,.35); }
+
+    /* ─────────────────────────────────────────
        FOOTER LINKS
     ───────────────────────────────────────── */
     .f-link {
@@ -1667,11 +1696,12 @@
       </div>
     </div>
 
-    <!-- Reviews grid -->
-    <div style="display:grid;grid-template-columns:1fr;gap:16px;" class="sm-2col lg-3col">
+    <!-- Reviews carousel -->
+    <div class="c-viewport reveal">
+    <div class="c-track" id="rev-track">
 
       <!-- Review 1 — Inmobiliaria JJ13 -->
-      <div class="svc-card reveal-scale rd1" style="padding:24px 22px;">
+      <div class="c-item svc-card" style="padding:24px 22px;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
           <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
                       background:linear-gradient(135deg,#C8FF3E 0%,#7C3AED 100%);
@@ -1693,7 +1723,7 @@
       </div>
 
       <!-- Review 2 — ABACO -->
-      <div class="svc-card reveal-scale rd2" style="padding:24px 22px;">
+      <div class="c-item svc-card" style="padding:24px 22px;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
           <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
                       background:linear-gradient(135deg,#3B82F6 0%,#06B6D4 100%);
@@ -1715,7 +1745,7 @@
       </div>
 
       <!-- Review 3 — AMCO -->
-      <div class="svc-card reveal-scale rd3" style="padding:24px 22px;">
+      <div class="c-item svc-card" style="padding:24px 22px;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
           <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
                       background:linear-gradient(135deg,#F59E0B 0%,#EF4444 100%);
@@ -1737,7 +1767,7 @@
       </div>
 
       <!-- Review 4 — CCM Facturas -->
-      <div class="svc-card reveal-scale rd1" style="padding:24px 22px;">
+      <div class="c-item svc-card" style="padding:24px 22px;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
           <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
                       background:linear-gradient(135deg,#7C3AED 0%,#C8FF3E 100%);
@@ -1759,7 +1789,7 @@
       </div>
 
       <!-- Review 5 — AmarIssa Yoga -->
-      <div class="svc-card reveal-scale rd2" style="padding:24px 22px;">
+      <div class="c-item svc-card" style="padding:24px 22px;">
         <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
           <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
                       background:linear-gradient(135deg,#EC4899 0%,#8B5CF6 100%);
@@ -1780,7 +1810,11 @@
         </div>
       </div>
 
-    </div><!-- / grid -->
+    </div><!-- / c-track -->
+    </div><!-- / c-viewport -->
+
+    <!-- Carousel dots -->
+    <div class="c-dots" id="rev-dots"></div>
 
     <!-- CTA to Google Maps -->
     <div class="reveal" style="text-align:center;margin-top:44px;">
@@ -2573,6 +2607,90 @@ function handleSubmit(e) {
     btn.disabled = false;
   });
 }
+
+/* ── REVIEWS CAROUSEL ──────────────────────────────────────── */
+(function() {
+  var track    = document.getElementById('rev-track');
+  var dotsWrap = document.getElementById('rev-dots');
+  if (!track) return;
+  var items    = Array.from(track.children);
+  var current  = 0;
+  var timer;
+  var GAP      = 16;
+
+  function visCount() { return window.innerWidth >= 768 ? 3 : 1; }
+  function maxSlide() { return Math.max(0, items.length - visCount()); }
+
+  /* Build / rebuild dot buttons */
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    var count = maxSlide() + 1;
+    for (var i = 0; i < count; i++) {
+      var d = document.createElement('button');
+      d.className = 'c-dot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-label', 'Ir a reseña ' + (i + 1));
+      d.dataset.idx = i;
+      d.addEventListener('click', function() {
+        goTo(+this.dataset.idx);
+        resetTimer();
+      });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    Array.from(dotsWrap.children).forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(idx) {
+    var max = maxSlide();
+    current = idx > max ? 0 : idx < 0 ? max : idx;
+    var w = items[0].getBoundingClientRect().width;
+    track.style.transform = 'translateX(-' + (current * (w + GAP)) + 'px)';
+    updateDots();
+  }
+
+  function next() { goTo(current >= maxSlide() ? 0 : current + 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 4500);
+  }
+
+  /* Pause on hover */
+  track.parentElement.addEventListener('mouseenter', function() { clearInterval(timer); });
+  track.parentElement.addEventListener('mouseleave', resetTimer);
+
+  /* Touch swipe support */
+  var touchX = 0;
+  track.addEventListener('touchstart', function(e) {
+    touchX = e.touches[0].clientX;
+    clearInterval(timer);
+  }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : goTo(current - 1); }
+    resetTimer();
+  }, { passive: true });
+
+  /* Recalculate on resize */
+  var rTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(rTimer);
+    rTimer = setTimeout(function() {
+      if (current > maxSlide()) current = maxSlide();
+      buildDots();
+      goTo(current);
+    }, 200);
+  });
+
+  /* Init */
+  buildDots();
+  goTo(0);
+  resetTimer();
+})();
 
 /* ── INIT ──────────────────────────────────────────────────── */
 setLang(currentLang);
