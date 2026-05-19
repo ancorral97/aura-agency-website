@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura — Agencia Digital</title>
+  <meta name="description" content="Aura — Agencia digital global. Facebook Ads, Google Ads, Video Ads y Páginas Web que hacen crecer tu negocio." />
+
+  <!-- Google Fonts: Syne (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'lime':    '#C8FF3E',
+            'gold':    '#F0E040',
+            'violet':  '#7C3AED',
+            'base':    '#07080A',
+            'surface': '#0F1115',
+            'float':   '#181B20',
+            'muted':   '#6B7280',
+            'snow':    '#F0F0EA',
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ─────────────────────────────────────────
+       BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      font-family: 'Inter', sans-serif;
+      background: #07080A;
+      color: #F0F0EA;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar          { width: 5px; }
+    ::-webkit-scrollbar-track    { background: #07080A; }
+    ::-webkit-scrollbar-thumb    { background: rgba(200,255,62,.22); border-radius: 99px; }
+
+    /* ─────────────────────────────────────────
+       TYPOGRAPHY TOKENS
+    ───────────────────────────────────────── */
+    .h-xl {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+    .h-lg {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+    .body-copy { line-height: 1.7; color: #6B7280; }
+
+    /* ─────────────────────────────────────────
+       LOGO WORDMARK
+    ───────────────────────────────────────── */
+    .wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: #F0F0EA;
+      text-decoration: none;
+    }
+    .wordmark .dot { color: #C8FF3E; }
+
+    /* ─────────────────────────────────────────
+       NAVBAR (floating layer)
+    ───────────────────────────────────────── */
+    .navbar {
+      background: rgba(7,8,10,.82);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(200,255,62,.05);
+    }
+    .nav-a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: #6B7280;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-a:hover       { color: #F0F0EA; }
+    .nav-a:focus-visible { outline: 2px solid #C8FF3E; border-radius: 4px; }
+
+    /* ─────────────────────────────────────────
+       LANGUAGE TOGGLE
+    ───────────────────────────────────────── */
+    .lang-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .lang-btn {
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 5px;
+      color: #6B7280;
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .07em;
+      transition: color .15s ease, background .15s ease;
+    }
+    .lang-btn.active            { color: #C8FF3E; background: rgba(200,255,62,.1); }
+    .lang-btn:hover:not(.active){ color: #F0F0EA; }
+    .lang-btn:focus-visible     { outline: 2px solid #C8FF3E; outline-offset: 2px; }
+
+    /* ─────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────── */
+    .btn-lime {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: #C8FF3E;
+      color: #07080A;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s ease,
+                  transform  .25s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow .2s ease;
+    }
+    .btn-lime:hover        { background: #d8ff58; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(200,255,62,.28), 0 2px 8px rgba(200,255,62,.12); }
+    .btn-lime:active       { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(200,255,62,.15); }
+    .btn-lime:focus-visible{ outline: 2px solid #C8FF3E; outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: transparent;
+      color: #F0F0EA;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      border-radius: 10px;
+      border: 1px solid rgba(240,240,234,.16);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color .2s ease,
+                  background  .2s ease,
+                  transform   .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-ghost:hover        { border-color: rgba(200,255,62,.35); background: rgba(200,255,62,.05); transform: translateY(-3px); }
+    .btn-ghost:active       { transform: translateY(-1px); }
+    .btn-ghost:focus-visible{ outline: 2px solid #C8FF3E; outline-offset: 3px; }
+
+    .btn-sm { padding: 9px 20px; font-size: .82rem; border-radius: 8px; }
+
+    /* ─────────────────────────────────────────
+       SECTION LABEL PILL
+    ───────────────────────────────────────── */
+    .label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 99px;
+      border: 1px solid rgba(200,255,62,.2);
+      background: rgba(200,255,62,.05);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #C8FF3E;
+    }
+
+    /* ─────────────────────────────────────────
+       GRAIN / NOISE TEXTURE
+    ───────────────────────────────────────── */
+    .grain-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO ORBS (radial gradients, animated)
+    ───────────────────────────────────────── */
+    .orb-lime {
+      position: absolute;
+      width: clamp(300px, 55vw, 700px);
+      height: clamp(300px, 55vw, 700px);
+      top: -12%; right: -8%;
+      background: radial-gradient(circle at 60% 40%,
+        rgba(200,255,62,.12) 0%,
+        rgba(200,255,62,.04) 38%,
+        transparent 68%);
+      pointer-events: none;
+      animation: floatA 14s ease-in-out infinite;
+    }
+    .orb-violet {
+      position: absolute;
+      width: clamp(260px, 48vw, 600px);
+      height: clamp(260px, 48vw, 600px);
+      bottom: -10%; left: -6%;
+      background: radial-gradient(circle at 40% 60%,
+        rgba(124,58,237,.14) 0%,
+        rgba(124,58,237,.04) 42%,
+        transparent 68%);
+      pointer-events: none;
+      animation: floatB 18s ease-in-out infinite;
+    }
+    .orb-gold {
+      position: absolute;
+      width: clamp(200px, 35vw, 420px);
+      height: clamp(200px, 35vw, 420px);
+      top: 38%; left: 28%;
+      background: radial-gradient(circle,
+        rgba(240,224,64,.04) 0%,
+        transparent 68%);
+      pointer-events: none;
+      animation: floatA 22s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatA {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%     { transform: translate(18px,-22px) scale(1.04); }
+      66%     { transform: translate(-12px,16px) scale(.97); }
+    }
+    @keyframes floatB {
+      0%,100% { transform: translate(0,0) scale(1); }
+      40%     { transform: translate(-16px,-18px) scale(1.03); }
+      70%     { transform: translate(14px,12px) scale(.98); }
+    }
+
+    /* scroll bob */
+    @keyframes scrollBob {
+      0%,100% { transform: translateY(0); opacity: .9; }
+      50%     { transform: translateY(7px); opacity: .3; }
+    }
+
+    /* ─────────────────────────────────────────
+       HERO STAT PILL
+    ───────────────────────────────────────── */
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.3);
+    }
+    .stat-pill-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: #C8FF3E;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .stat-pill-label { font-size: .8rem; color: #6B7280; line-height: 1.3; }
+
+    /* ─────────────────────────────────────────
+       SERVICE CARDS (elevated surface)
+    ───────────────────────────────────────── */
+    .svc-card {
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 18px;
+      padding: 30px 26px;
+      transition: border-color .3s ease,
+                  transform   .35s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow  .3s ease;
+    }
+    .svc-card:hover {
+      border-color: rgba(200,255,62,.22);
+      transform: translateY(-7px);
+      box-shadow: 0 6px 20px rgba(200,255,62,.06),
+                  0 20px 56px rgba(0,0,0,.55);
+    }
+    .svc-icon {
+      width: 52px; height: 52px;
+      border-radius: 13px;
+      background: rgba(200,255,62,.08);
+      border: 1px solid rgba(200,255,62,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: background .25s ease, border-color .25s ease;
+    }
+    .svc-card:hover .svc-icon {
+      background: rgba(200,255,62,.14);
+      border-color: rgba(200,255,62,.28);
+    }
+    .svc-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #F0F0EA;
+      margin-bottom: 10px;
+    }
+    .svc-desc { font-size: .875rem; line-height: 1.7; color: #6B7280; }
+
+    /* ─────────────────────────────────────────
+       PORTFOLIO CARDS
+    ───────────────────────────────────────── */
+    .port-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.05);
+      aspect-ratio: 4 / 3;
+    }
+    .port-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+    }
+    /* always-visible gradient overlay */
+    .port-base-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(4,4,6,.78) 0%,
+        transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+    /* hover overlay — deeper + color treatment (mix-blend-multiply) */
+    .port-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(4,4,6,.92) 0%,
+        rgba(4,4,6,.3) 55%,
+        transparent 100%);
+      opacity: 0;
+      transition: opacity .32s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+    /* Color treatment: lime tint on hover */
+    .port-tint {
+      position: absolute;
+      inset: 0;
+      background: rgba(200,255,62,.07);
+      mix-blend-mode: multiply;
+      opacity: 0;
+      transition: opacity .32s ease;
+      pointer-events: none;
+    }
+    .port-card:hover .port-img          { transform: scale(1.06); }
+    .port-card:hover .port-hover-overlay{ opacity: 1; }
+    .port-card:hover .port-tint         { opacity: 1; }
+
+    .port-tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: rgba(200,255,62,.18);
+      border: 1px solid rgba(200,255,62,.3);
+      color: #C8FF3E;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .port-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #F0F0EA;
+      line-height: 1.3;
+    }
+
+    /* ─────────────────────────────────────────
+       STATS — "Why Aura" section
+    ───────────────────────────────────────── */
+    .big-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #C8FF3E;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       FADE DIVIDER
+    ───────────────────────────────────────── */
+    .fade-line {
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent, rgba(200,255,62,.18), transparent);
+    }
+
+    /* ─────────────────────────────────────────
+       FORM FIELDS
+    ───────────────────────────────────────── */
+    .field {
+      width: 100%;
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 14px 17px;
+      color: #F0F0EA;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .field:focus {
+      border-color: rgba(200,255,62,.4);
+      box-shadow: 0 0 0 3px rgba(200,255,62,.07);
+    }
+    .field::placeholder { color: #374151; }
+    .field option       { background: #0F1115; color: #F0F0EA; }
+    select.field {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 42px;
+      cursor: pointer;
+    }
+
+    /* ─────────────────────────────────────────
+       HAMBURGER LINES
+    ───────────────────────────────────────── */
+    .hline {
+      display: block;
+      width: 21px; height: 2px;
+      background: #F0F0EA;
+      border-radius: 2px;
+      transform-origin: center;
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1),
+                  opacity   .2s ease;
+    }
+
+    /* ─────────────────────────────────────────
+       MOBILE NAV OVERLAY
+    ───────────────────────────────────────── */
+    .mob-nav {
+      position: fixed;
+      inset: 0;
+      top: 64px;
+      background: rgba(7,8,10,.97);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      z-index: 40;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .mob-nav.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .mob-a {
+      display: block;
+      padding: 18px 0;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #F0F0EA;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: color .2s ease;
+    }
+    .mob-a:hover { color: #C8FF3E; }
+
+    /* ─────────────────────────────────────────
+       SCROLL-REVEAL — base + variants
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity  .65s cubic-bezier(.16,1,.3,1),
+                  transform .65s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.vis { opacity: 1; transform: translateY(0); }
+
+    /* Slide from left */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity .7s cubic-bezier(.16,1,.3,1),
+                  transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal-left.vis { opacity: 1; transform: translateX(0); }
+
+    /* Slide from right */
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(32px);
+      transition: opacity .7s cubic-bezier(.16,1,.3,1),
+                  transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal-right.vis { opacity: 1; transform: translateX(0); }
+
+    /* Scale up */
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(.93);
+      transition: opacity .55s cubic-bezier(.16,1,.3,1),
+                  transform .55s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal-scale.vis { opacity: 1; transform: scale(1); }
+
+    .rd1 { transition-delay: .07s; }
+    .rd2 { transition-delay: .14s; }
+    .rd3 { transition-delay: .21s; }
+    .rd4 { transition-delay: .28s; }
+
+    /* ─────────────────────────────────────────
+       SERVICE CARD — icon micro-animation
+    ───────────────────────────────────────── */
+    @keyframes iconBounce {
+      0%   { transform: scale(1) rotate(0deg); }
+      40%  { transform: scale(1.22) rotate(-8deg); }
+      70%  { transform: scale(.95) rotate(4deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .svc-card:hover .svc-icon svg {
+      animation: iconBounce .55s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    /* ─────────────────────────────────────────
+       LABEL PILL — gentle glow breathe
+    ───────────────────────────────────────── */
+    @keyframes pillGlow {
+      0%,100% { box-shadow: 0 0 0 0 rgba(200,255,62,0); }
+      50%      { box-shadow: 0 0 14px 3px rgba(200,255,62,.09); }
+    }
+    .label-pill { animation: pillGlow 4s ease-in-out infinite; }
+
+    /* ─────────────────────────────────────────
+       PORTFOLIO CARD — inset lime ring on hover
+       (inset box-shadow ignores overflow:hidden)
+    ───────────────────────────────────────── */
+    .port-card {
+      transition: box-shadow .3s ease, transform .55s cubic-bezier(.25,.46,.45,.94);
+    }
+    .port-card:hover {
+      box-shadow: inset 0 0 0 1.5px rgba(200,255,62,.32),
+                  0 12px 40px rgba(200,255,62,.05);
+    }
+
+    /* ─────────────────────────────────────────
+       VALUE PROP CARD — animated border glow
+    ───────────────────────────────────────── */
+    @keyframes vpCardGlow {
+      0%,100% { border-color: rgba(200,255,62,.12);
+                box-shadow: 0 0 30px rgba(200,255,62,.03), 0 20px 60px rgba(0,0,0,.5); }
+      50%      { border-color: rgba(200,255,62,.26);
+                box-shadow: 0 0 55px rgba(200,255,62,.08), 0 20px 60px rgba(0,0,0,.5); }
+    }
+    .vp-card-glow { animation: vpCardGlow 5s ease-in-out infinite; }
+
+    /* ─────────────────────────────────────────
+       BENEFIT ITEMS in VP section — staggered
+    ───────────────────────────────────────── */
+    .vp-benefit { transition-delay: 0s; }
+    .vp-benefit:nth-child(2) { transition-delay: .12s; }
+    .vp-benefit:nth-child(3) { transition-delay: .24s; }
+
+    /* ─────────────────────────────────────────
+       STAT COUNTER — initial state (JS animates)
+    ───────────────────────────────────────── */
+    .stat-block { transition: transform .5s cubic-bezier(.34,1.56,.64,1),
+                              opacity .5s ease; }
+    .stat-block.vis { transform: scale(1) !important; opacity: 1 !important; }
+
+    /* ─────────────────────────────────────────
+       SECTION BG — very slow ambient gradient shift
+    ───────────────────────────────────────── */
+    @keyframes ambientShift {
+      0%,100% { opacity: .6; }
+      50%      { opacity: 1; }
+    }
+    #servicios > div:first-child { animation: ambientShift 8s ease-in-out infinite; }
+
+    /* ─────────────────────────────────────────
+       HERO ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .au  { animation: fadeUp .75s cubic-bezier(.16,1,.3,1) both; }
+    .ad1 { animation-delay: .08s; }
+    .ad2 { animation-delay: .2s;  }
+    .ad3 { animation-delay: .32s; }
+    .ad4 { animation-delay: .46s; }
+    .ad5 { animation-delay: .62s; }
+
+    /* ─────────────────────────────────────────
+       FOOTER LINKS
+    ───────────────────────────────────────── */
+    .f-link {
+      font-size: .875rem;
+      color: #6B7280;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .f-link:hover       { color: #C8FF3E; }
+    .f-link:focus-visible{ outline: 2px solid #C8FF3E; border-radius: 3px; }
+
+    /* ─────────────────────────────────────────
+       VERIFIED BADGE
+    ───────────────────────────────────────── */
+    .verified-glow {
+      filter: drop-shadow(0 0 22px rgba(200,255,62,.10));
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE HELPERS
+    ───────────────────────────────────────── */
+    @media (min-width: 640px) {
+      .sm-2col { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (min-width: 768px) {
+      .md-2col { grid-template-columns: 1fr 1fr !important; }
+      .md-4col { grid-template-columns: repeat(4,1fr) !important; }
+    }
+    @media (min-width: 1024px) {
+      .lg-4col { grid-template-columns: repeat(4,1fr) !important; }
+      .lg-3col { grid-template-columns: repeat(3,1fr) !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR — floating layer
+══════════════════════════════════════════ -->
+<header class="navbar fixed top-0 left-0 right-0 z-50"
+        style="height:64px;display:flex;align-items:center;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;width:100%;
+              display:flex;align-items:center;justify-content:space-between;">
+
+    <!-- Logo -->
+    <a href="#" class="wordmark">AURA<span class="dot">°</span></a>
+
+    <!-- Desktop nav links -->
+    <nav id="desk-nav" style="display:none;align-items:center;gap:44px;">
+      <a href="#servicios" class="nav-a" data-i18n="nav_services">Servicios</a>
+      <a href="#precios"   class="nav-a" data-i18n="nav_pricing">Precios</a>
+      <a href="#portafolio" class="nav-a" data-i18n="nav_portfolio">Portafolio</a>
+      <a href="#nosotros"  class="nav-a" data-i18n="nav_about">Nosotros</a>
+      <a href="#contacto"  class="nav-a" data-i18n="nav_contact">Contacto</a>
+    </nav>
+
+    <!-- Desktop: lang toggle + CTA -->
+    <div id="desk-actions" style="display:flex;align-items:center;gap:14px;">
+      <div class="lang-wrap">
+        <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contacto" class="btn-lime btn-sm" style="display:none;"
+         data-i18n="nav_cta" id="desk-cta">Contáctanos</a>
+    </div>
+
+    <!-- Mobile: lang + hamburger -->
+    <div id="mob-actions" style="display:flex;align-items:center;gap:10px;">
+      <div class="lang-wrap">
+        <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+      <button id="ham"
+        aria-label="Toggle menu" aria-expanded="false"
+        onclick="toggleMenu()"
+        style="width:38px;height:38px;display:flex;flex-direction:column;
+               justify-content:center;align-items:center;gap:5px;
+               border-radius:8px;border:1px solid rgba(255,255,255,.1);
+               background:none;cursor:pointer;
+               transition:border-color .2s ease;"
+        onmouseover="this.style.borderColor='rgba(200,255,62,.3)'"
+        onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <span class="hline" id="hl1"></span>
+        <span class="hline" id="hl2"></span>
+        <span class="hline" id="hl3"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Responsive nav show/hide via JS (avoids Tailwind md: in inline html) -->
+<script>
+  (function(){
+    function layout(){
+      var w = window.innerWidth;
+      var nav = document.getElementById('desk-nav');
+      if(w>=768){ nav.style.display='flex'; nav.style.gap='44px'; }
+      else { nav.style.display='none'; }
+      document.getElementById('desk-cta').style.display    = w>=768 ? 'inline-flex':'none';
+      document.getElementById('mob-actions').style.display = w>=768 ? 'none':'flex';
+      var da = document.getElementById('desk-actions');
+      if(w>=768){ da.style.display='flex'; } else { da.style.display='none'; }
+    }
+    layout();
+    window.addEventListener('resize', layout);
+  })();
+</script>
+
+<!-- Mobile nav overlay -->
+<div id="mob-nav" class="mob-nav" aria-hidden="true">
+  <a href="#servicios" class="mob-a" data-i18n="nav_services" onclick="closeMenu()">Servicios</a>
+  <a href="#precios"   class="mob-a" data-i18n="nav_pricing"  onclick="closeMenu()">Precios</a>
+  <a href="#portafolio" class="mob-a" data-i18n="nav_portfolio" onclick="closeMenu()">Portafolio</a>
+  <a href="#nosotros"  class="mob-a" data-i18n="nav_about"    onclick="closeMenu()">Nosotros</a>
+  <a href="#contacto"  class="mob-a" data-i18n="nav_contact"  onclick="closeMenu()">Contacto</a>
+  <a href="#contacto"  class="btn-lime"
+     style="margin-top:28px;text-align:center;width:100%;"
+     data-i18n="nav_cta" onclick="closeMenu()">Contáctanos</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero"
+  style="position:relative;min-height:100vh;display:flex;align-items:center;
+         justify-content:center;overflow:hidden;padding-top:64px;">
+
+  <!-- Dynamic wave canvas (z-index 0 — base layer) -->
+  <canvas id="hero-wave"
+    style="position:absolute;inset:0;width:100%;height:100%;
+           display:block;z-index:0;"></canvas>
+
+  <!-- Radial gradient orbs overlay on top of canvas -->
+  <div class="orb-lime" style="opacity:.7;"></div>
+  <div class="orb-violet" style="opacity:.7;"></div>
+  <div class="orb-gold"></div>
+
+  <!-- SVG grain texture -->
+  <svg class="grain-layer" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+       preserveAspectRatio="xMidYMid slice">
+    <filter id="g">
+      <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#g)" opacity=".036"/>
+  </svg>
+
+  <!-- Content -->
+  <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;
+              padding:48px 24px;text-align:center;">
+
+    <!-- Badge: Meta Certified -->
+    <div class="au"
+         style="display:flex;flex-wrap:wrap;justify-content:center;
+                gap:10px;margin-bottom:32px;">
+
+      <!-- Meta Certified -->
+      <div style="display:inline-flex;align-items:center;gap:8px;
+                  padding:8px 16px;border-radius:99px;
+                  border:1px solid rgba(0,130,251,.3);
+                  background:rgba(0,130,251,.08);">
+        <!-- Meta "M" mark -->
+        <span style="width:20px;height:20px;border-radius:50%;background:#0082FB;
+                     display:flex;align-items:center;justify-content:center;
+                     font-size:.72rem;font-weight:800;color:#fff;flex-shrink:0;
+                     font-family:'Syne',sans-serif;letter-spacing:0;">M</span>
+        <span style="font-size:.76rem;font-weight:600;color:#5BA8FF;letter-spacing:.05em;"
+              data-i18n="hero_meta">Meta Certified</span>
+      </div>
+    </div>
+
+    <!-- Headline — conversion-focused -->
+    <h1 class="h-xl au ad1" style="color:#F0F0EA;margin-bottom:22px;"
+        data-i18n-html="hero_h1">
+      Más clientes,<br><span style="color:#C8FF3E;">más ventas.</span>
+    </h1>
+
+    <!-- Sub -->
+    <p class="body-copy au ad2"
+       style="font-size:clamp(1rem,2.2vw,1.15rem);max-width:560px;margin:0 auto 40px;"
+       data-i18n="hero_sub">
+      Publicidad en Facebook, Instagram y Google que atrae clientes de verdad.
+      Calidad de agencia de EE.UU. al precio de México.
+    </p>
+
+    <!-- CTA row -->
+    <div class="au ad3"
+         style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:48px;">
+      <a href="#contacto" class="btn-lime" data-i18n="hero_cta1">Quiero más clientes →</a>
+      <a href="#portafolio" class="btn-ghost" data-i18n="hero_cta2">Ver trabajos</a>
+    </div>
+
+    <!-- Floating stat pills -->
+    <div class="au ad5"
+         style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:36px;">
+      <div class="stat-pill">
+        <span class="stat-pill-num">40+</span>
+        <span class="stat-pill-label" data-i18n="hero_pill1">Clientes Activos</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-pill-num">200+</span>
+        <span class="stat-pill-label" data-i18n="hero_pill2">Proyectos</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-pill-num">6</span>
+        <span class="stat-pill-label" data-i18n="hero_pill3">Años de Exp.</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator — inside content to avoid overlap with pills -->
+    <div class="au ad5" style="display:flex;justify-content:center;opacity:.4;">
+      <div style="width:24px;height:40px;border-radius:12px;
+                  border:1.5px solid rgba(200,255,62,.35);
+                  display:flex;justify-content:center;padding-top:7px;">
+        <div style="width:2px;height:8px;background:#C8FF3E;border-radius:2px;
+                    animation:scrollBob 1.9s ease-in-out infinite;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     VALUE PROPOSITION — México angle
+══════════════════════════════════════════ -->
+<section id="ventaja"
+  style="padding:72px 0;background:#07080A;position:relative;overflow:hidden;">
+
+  <!-- Lime center glow -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+              width:800px;height:280px;pointer-events:none;
+              background:radial-gradient(ellipse,rgba(200,255,62,.055) 0%,transparent 68%);"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <!-- Card with lime border -->
+    <div class="reveal vp-card-glow"
+         style="border:1px solid rgba(200,255,62,.16);border-radius:22px;
+                padding:48px;background:rgba(15,17,21,.9);
+                box-shadow:0 0 60px rgba(200,255,62,.04),0 20px 60px rgba(0,0,0,.5);">
+
+      <div style="display:grid;gap:48px;align-items:center;" class="md-2col">
+
+        <!-- Left: pitch -->
+        <div class="reveal-left">
+          <!-- Flag label -->
+          <div style="display:inline-flex;align-items:center;gap:8px;
+                      padding:6px 14px;border-radius:99px;margin-bottom:22px;
+                      background:rgba(200,255,62,.07);
+                      border:1px solid rgba(200,255,62,.2);">
+            <span style="font-size:1rem;">🇲🇽</span>
+            <span style="font-size:.7rem;font-weight:700;letter-spacing:.13em;
+                         text-transform:uppercase;color:#C8FF3E;"
+                  data-i18n="vp_label">Agencia con base en México</span>
+          </div>
+
+          <h2 style="font-family:'Syne',sans-serif;font-weight:800;
+                     font-size:clamp(1.55rem,3.2vw,2.5rem);line-height:1.12;
+                     letter-spacing:-0.03em;color:#F0F0EA;margin-bottom:18px;"
+              data-i18n-html="vp_title">
+            La calidad de una agencia de EE.UU.<br>
+            <span style="color:#C8FF3E;">Al precio de México.</span>
+          </h2>
+
+          <p style="font-size:.95rem;line-height:1.75;color:#6B7280;max-width:440px;"
+             data-i18n="vp_body">
+            Estamos asentados en México, lo que nos permite ofrecer el mismo nivel de
+            estrategia, creatividad y resultados que una agencia de EE.UU. o Canadá —
+            a una fracción del costo. Tu presupuesto rinde más. Tus resultados, igual de sólidos.
+          </p>
+
+          <a href="#contacto" class="btn-lime"
+             style="margin-top:28px;display:inline-flex;"
+             data-i18n="vp_cta">Obtén una cotización gratis →</a>
+        </div>
+
+        <!-- Right: 3 benefit items -->
+        <div style="display:flex;flex-direction:column;gap:13px;">
+
+          <div style="display:flex;align-items:flex-start;gap:14px;
+                      padding:16px 18px;border-radius:13px;
+                      background:#07080A;border:1px solid rgba(255,255,255,.07);">
+            <div style="width:28px;height:28px;border-radius:8px;flex-shrink:0;
+                        background:rgba(200,255,62,.1);border:1px solid rgba(200,255,62,.2);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:.85rem;">✓</div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;
+                          font-size:.9rem;color:#F0F0EA;margin-bottom:3px;"
+                   data-i18n="vp_b1_title">Equipo bilingüe (ES / EN)</div>
+              <div style="font-size:.8rem;line-height:1.55;color:#6B7280;"
+                   data-i18n="vp_b1_sub">Atendemos clientes de México, EE.UU. y Canadá sin problema.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;
+                      padding:16px 18px;border-radius:13px;
+                      background:#07080A;border:1px solid rgba(255,255,255,.07);">
+            <div style="width:28px;height:28px;border-radius:8px;flex-shrink:0;
+                        background:rgba(200,255,62,.1);border:1px solid rgba(200,255,62,.2);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:.85rem;">✓</div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;
+                          font-size:.9rem;color:#F0F0EA;margin-bottom:3px;"
+                   data-i18n="vp_b2_title">Hasta 60% más accesible</div>
+              <div style="font-size:.8rem;line-height:1.55;color:#6B7280;"
+                   data-i18n="vp_b2_sub">Que agencias equivalentes en EE.UU. o Canadá. Misma calidad, mejor precio.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:14px;
+                      padding:16px 18px;border-radius:13px;
+                      background:#07080A;border:1px solid rgba(255,255,255,.07);">
+            <div style="width:28px;height:28px;border-radius:8px;flex-shrink:0;
+                        background:rgba(200,255,62,.1);border:1px solid rgba(200,255,62,.2);
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:.85rem;">✓</div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;
+                          font-size:.9rem;color:#F0F0EA;margin-bottom:3px;"
+                   data-i18n="vp_b3_title">Resultados medibles, nivel global</div>
+              <div style="font-size:.8rem;line-height:1.55;color:#6B7280;"
+                   data-i18n="vp_b3_sub">Clientes activos en México, Estados Unidos y Canadá lo confirman.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════ -->
+<section id="servicios"
+  style="padding:100px 0;background:#0A0B0E;position:relative;overflow:hidden;">
+
+  <!-- Subtle bg gradient -->
+  <div style="position:absolute;top:0;right:0;width:45%;height:100%;
+              background:radial-gradient(ellipse at 85% 50%,
+                rgba(200,255,62,.03) 0%,transparent 68%);pointer-events:none;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:64px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;"
+           data-i18n="services_label">SERVICIOS</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;margin-bottom:14px;"
+          data-i18n="services_title">Lo que hacemos</h2>
+      <p class="body-copy reveal" style="font-size:1rem;max-width:540px;margin:0 auto;"
+         data-i18n="services_sub">
+        Ponemos tu negocio frente a la gente correcta, en el momento correcto.
+        Sin complicaciones, con resultados reales.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div style="display:grid;grid-template-columns:1fr;gap:18px;"
+         class="sm-2col lg-3col">
+
+      <!-- Facebook & Instagram Ads -->
+      <div class="svc-card reveal rd1">
+        <div class="svc-icon">
+          <!-- Facebook "f" icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z"
+                  fill="#C8FF3E" stroke="#C8FF3E" stroke-width=".5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="svc-title" data-i18n="svc1_title">Facebook & Instagram Ads</div>
+        <p class="svc-desc" data-i18n="svc1_desc">
+          Llegamos exactamente a quien tú quieres. Creamos anuncios que la gente ve,
+          entiende y en los que hace clic — sin gastar de más.
+        </p>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap;">
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;">Facebook</span>
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;">Instagram</span>
+        </div>
+      </div>
+
+      <!-- Google Ads -->
+      <div class="svc-card reveal rd2">
+        <div class="svc-icon">
+          <!-- Google "G" icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M21.35 11.1H12.18V13.83H18.69C18.36 17.64 15.19 19.27 12.19 19.27C8.36 19.27 5 16.25 5 12C5 7.9 8.2 4.73 12.2 4.73C15.29 4.73 17.1 6.7 17.1 6.7L19 4.72C19 4.72 16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12C2.03 17.05 6.16 22 12.25 22C17.6 22 21.5 18.33 21.5 12.91C21.5 11.76 21.35 11.1 21.35 11.1Z"
+                  fill="#C8FF3E"/>
+          </svg>
+        </div>
+        <div class="svc-title" data-i18n="svc2_title">Google Ads</div>
+        <p class="svc-desc" data-i18n="svc2_desc">
+          Aparece primero cuando alguien busca lo que tú vendes. Captamos clientes
+          que ya tienen la intención de comprar.
+        </p>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap;">
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;" data-i18n="tag_search">Búsqueda</span>
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;">Display</span>
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;">YouTube</span>
+        </div>
+      </div>
+
+      <!-- Páginas Web -->
+      <div class="svc-card reveal rd3">
+        <div class="svc-icon">
+          <!-- Globe / browser icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="20" height="18" rx="3"
+                  stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M2 7H22" stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="6" cy="5" r="1" fill="#C8FF3E"/>
+            <circle cx="9.5" cy="5" r="1" fill="#C8FF3E"/>
+            <path d="M7 12H17M7 15.5H13" stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="svc-title" data-i18n="svc4_title">Páginas Web</div>
+        <p class="svc-desc" data-i18n="svc4_desc">
+          Tu negocio en internet, bien hecho. Sitios rápidos y profesionales diseñados
+          para convertir visitantes en clientes — no solo para verse bonitos.
+        </p>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap;">
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;" data-i18n="tag_design">Diseño</span>
+          <span style="font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:99px;
+                       background:rgba(200,255,62,.08);border:1px solid rgba(200,255,62,.15);
+                       color:#C8FF3E;">Landing Pages</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRICING
+══════════════════════════════════════════ -->
+<section id="precios"
+  style="padding:100px 0;background:#0A0B0E;position:relative;overflow:hidden;">
+
+  <!-- Subtle bg gradient -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);
+              width:800px;height:400px;pointer-events:none;
+              background:radial-gradient(ellipse at 50% 0%,
+                rgba(200,255,62,.05) 0%,transparent 68%);"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:64px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;"
+           data-i18n="pricing_label">PRECIOS</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;margin-bottom:16px;"
+          data-i18n-html="pricing_title">Precios transparentes,<br>sin sorpresas.</h2>
+      <p class="body-copy reveal" style="font-size:1rem;max-width:520px;margin:0 auto;"
+         data-i18n="pricing_sub">
+        Precios de entrada para que sepas qué esperar.
+        El costo final se ajusta según tus objetivos y presupuesto publicitario.
+      </p>
+    </div>
+
+    <!-- 3 pricing cards -->
+    <div style="display:grid;grid-template-columns:1fr;gap:20px;" class="sm-2col lg-3col">
+
+      <!-- Card 1: Facebook & Instagram Ads (featured) -->
+      <div class="reveal-left rd1"
+           style="display:flex;flex-direction:column;padding:36px 28px;
+                  border-radius:18px;
+                  border:1px solid rgba(200,255,62,.28);
+                  background:rgba(200,255,62,.03);
+                  box-shadow:0 0 40px rgba(200,255,62,.06),0 20px 60px rgba(0,0,0,.5);
+                  position:relative;">
+        <!-- "Popular" tag -->
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+                    padding:4px 14px;border-radius:99px;
+                    background:#C8FF3E;color:#07080A;
+                    font-size:.68rem;font-weight:800;letter-spacing:.1em;
+                    text-transform:uppercase;white-space:nowrap;"
+             data-i18n="pricing_popular">Más popular</div>
+        <!-- Icon -->
+        <div class="svc-icon" style="margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M18 2H15C13.67 2 12.4 2.53 11.46 3.46C10.53 4.4 10 5.67 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73 14.1 6.48 14.29 6.29C14.48 6.1 14.73 6 15 6H18V2Z"
+                  fill="#C8FF3E"/>
+          </svg>
+        </div>
+        <!-- Service name -->
+        <div class="svc-title" style="margin-bottom:20px;"
+             data-i18n="pr1_title">Facebook & Instagram Ads</div>
+        <!-- Price block -->
+        <div style="margin-bottom:24px;padding-bottom:24px;
+                    border-bottom:1px solid rgba(255,255,255,.07);">
+          <div style="font-size:.72rem;font-weight:700;color:#6B7280;
+                      letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;"
+               data-i18n="pricing_from">Desde</div>
+          <div style="display:flex;align-items:baseline;gap:4px;">
+            <span style="font-family:'Syne',sans-serif;font-weight:800;
+                         font-size:2.6rem;color:#C8FF3E;letter-spacing:-0.03em;
+                         line-height:1;">$799</span>
+            <span style="font-size:.82rem;color:#6B7280;" data-i18n="pr1_unit">USD / mes</span>
+          </div>
+        </div>
+        <!-- Features — directo del brochure Aura 2026 -->
+        <ul style="list-style:none;display:flex;flex-direction:column;
+                   gap:10px;margin-bottom:28px;flex:1;">
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f1">Gestión completa de campañas — FB e Instagram activos</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f2">Segmentación de audiencia ideal — llegamos a quien puede comprarte</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f3">Hasta 3 diseños de imagen por mes listos para publicar</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f4">Textos y copy persuasivos que convierten visitas en clientes</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f5">Testeo y optimización continua para bajar tu costo por cliente</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f6">Reporte mensual — leads, costo por cliente y métricas clave</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f7">Monitoreo y ajustes en tiempo real</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr1_f8">Mensaje automático de primer contacto incluido</span>
+          </li>
+        </ul>
+        <a href="#contacto" class="btn-lime" style="width:100%;justify-content:center;"
+           data-i18n="pricing_card_cta">Quiero empezar →</a>
+      </div>
+
+      <!-- Card 2: Google Ads -->
+      <div class="svc-card reveal rd2"
+           style="display:flex;flex-direction:column;padding:36px 28px;">
+        <!-- Icon -->
+        <div class="svc-icon" style="margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M21.35 11.1H12.18V13.83H18.69C18.36 17.64 15.19 19.27 12.19 19.27C8.36 19.27 5 16.25 5 12C5 7.9 8.2 4.73 12.2 4.73C15.29 4.73 17.1 6.7 17.1 6.7L19 4.72C19 4.72 16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12C2.03 17.05 6.16 22 12.25 22C17.6 22 21.5 18.33 21.5 12.91C21.5 11.76 21.35 11.1 21.35 11.1Z"
+                  fill="#C8FF3E"/>
+          </svg>
+        </div>
+        <div class="svc-title" style="margin-bottom:20px;"
+             data-i18n="pr2_title">Google Ads</div>
+        <!-- Price block -->
+        <div style="margin-bottom:24px;padding-bottom:24px;
+                    border-bottom:1px solid rgba(200,255,62,.12);">
+          <div style="font-size:.72rem;font-weight:700;color:#6B7280;
+                      letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;"
+               data-i18n="pricing_from">Desde</div>
+          <div style="display:flex;align-items:baseline;gap:4px;">
+            <span style="font-family:'Syne',sans-serif;font-weight:800;
+                         font-size:2.6rem;color:#C8FF3E;letter-spacing:-0.03em;
+                         line-height:1;">$799</span>
+            <span style="font-size:.82rem;color:#6B7280;" data-i18n="pr2_unit">USD / mes</span>
+          </div>
+        </div>
+        <!-- Features -->
+        <ul style="list-style:none;display:flex;flex-direction:column;
+                   gap:11px;margin-bottom:32px;flex:1;">
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.85rem;color:#9CA3AF;" data-i18n="pr2_f1">Investigación de palabras clave</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.85rem;color:#9CA3AF;" data-i18n="pr2_f2">Campañas de búsqueda, display y YouTube</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.85rem;color:#9CA3AF;" data-i18n="pr2_f3">Copywriting para anuncios</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.85rem;color:#9CA3AF;" data-i18n="pr2_f4">Optimización y ajuste de pujas</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.85rem;color:#9CA3AF;" data-i18n="pr2_f5">Reporte mensual de rendimiento</span>
+          </li>
+        </ul>
+        <a href="#contacto" class="btn-lime" style="width:100%;justify-content:center;"
+           data-i18n="pricing_card_cta">Quiero empezar →</a>
+      </div>
+
+      <!-- Card 3: Página Web (also popular) -->
+      <div class="svc-card reveal-right rd3"
+           style="display:flex;flex-direction:column;padding:36px 28px;position:relative;">
+        <!-- "Más solicitado" tag -->
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+                    padding:4px 14px;border-radius:99px;
+                    background:#0F1115;color:#C8FF3E;
+                    border:1px solid rgba(200,255,62,.35);
+                    font-size:.68rem;font-weight:800;letter-spacing:.1em;
+                    text-transform:uppercase;white-space:nowrap;"
+             data-i18n="pricing_requested">Más solicitado</div>
+        <!-- Icon -->
+        <div class="svc-icon" style="margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="20" height="18" rx="3"
+                  stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M2 7H22" stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="6" cy="5" r="1" fill="#C8FF3E"/>
+            <circle cx="9.5" cy="5" r="1" fill="#C8FF3E"/>
+            <path d="M7 12H17M7 15.5H13"
+                  stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="svc-title" style="margin-bottom:20px;"
+             data-i18n="pr3_title">Página Web</div>
+        <!-- Price block -->
+        <div style="margin-bottom:24px;padding-bottom:24px;
+                    border-bottom:1px solid rgba(255,255,255,.07);">
+          <div style="font-size:.72rem;font-weight:700;color:#6B7280;
+                      letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;"
+               data-i18n="pricing_from">Desde</div>
+          <div style="display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;">
+            <span style="font-family:'Syne',sans-serif;font-weight:800;
+                         font-size:2.6rem;color:#C8FF3E;letter-spacing:-0.03em;
+                         line-height:1;">$999</span>
+            <span style="font-size:.82rem;color:#6B7280;" data-i18n="pr3_unit">USD · pago único</span>
+          </div>
+        </div>
+        <!-- Features -->
+        <ul style="list-style:none;display:flex;flex-direction:column;
+                   gap:10px;margin-bottom:28px;flex:1;">
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f1">Diseño personalizado a tu imagen y marca</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f2">Se ve perfecto en celular y computadora</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f3">Botón de WhatsApp automático + formulario de contacto</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f4">Pixel de Facebook incluido (para retargeting y anuncios)</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f5">Galería de fotos + sección de reseñas / testimonios</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f6">Hosting siempre incluido sin costo · Dominio gratis el 1er año</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="color:#C8FF3E;font-size:.85rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <span style="font-size:.83rem;color:#9CA3AF;" data-i18n="pr3_f7">Entrega en 8 días o menos — 2 rondas de revisiones incluidas</span>
+          </li>
+          <!-- Extra cost items -->
+          <li style="display:flex;align-items:flex-start;gap:10px;
+                     margin-top:6px;padding-top:12px;
+                     border-top:1px solid rgba(255,255,255,.06);">
+            <span style="color:#6B7280;font-size:.8rem;flex-shrink:0;margin-top:1px;">+</span>
+            <span style="font-size:.79rem;color:#6B7280;line-height:1.5;" data-i18n="pr3_extra">
+              Mantenimiento opcional: hasta 3 cambios/mes · soporte WhatsApp
+            </span>
+          </li>
+        </ul>
+        <a href="#contacto" class="btn-lime" style="width:100%;justify-content:center;"
+           data-i18n="pricing_card_cta">Quiero empezar →</a>
+      </div>
+
+    </div><!-- / grid -->
+
+    <!-- Bottom note + custom quote CTA -->
+    <div class="reveal" style="text-align:center;margin-top:48px;">
+      <p class="body-copy" style="font-size:.9rem;margin-bottom:20px;"
+         data-i18n="pricing_note">
+        ¿Necesitas algo diferente? El presupuesto publicitario va aparte del fee de gestión.
+        Contáctanos y te enviamos una propuesta detallada sin costo.
+      </p>
+      <a href="#contacto" class="btn-ghost" data-i18n="pricing_cta">
+        Cotización personalizada →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PORTFOLIO
+══════════════════════════════════════════ -->
+<section id="portafolio"
+  style="padding:100px 0;background:#07080A;">
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:64px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;"
+           data-i18n="portfolio_label">PORTAFOLIO</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;margin-bottom:14px;"
+          data-i18n-html="portfolio_title">Trabajo real,<br>resultados reales.</h2>
+      <p class="body-copy reveal" style="font-size:1rem;max-width:460px;margin:0 auto;"
+         data-i18n="portfolio_sub">
+        Casos de estudio de marcas que confiaron en Aura para crecer.
+      </p>
+    </div>
+
+    <!-- Grid 2×2 -->
+    <div style="display:grid;grid-template-columns:1fr;gap:18px;"
+         class="sm-2col">
+
+      <!-- Card 1 — Lareta -->
+      <div class="port-card reveal-left rd1">
+        <img class="port-img"
+             src="Brand%20Assets/Pagina%20Dise%C3%B1os/1.png"
+             alt="Lareta Salón de Eventos" loading="eager">
+        <div class="port-tint"></div>
+        <div class="port-base-overlay">
+          <span class="port-tag" data-i18n="p1_type">Video Ads</span>
+          <span class="port-name" data-i18n="p1_client">Lareta Salón de Eventos</span>
+        </div>
+        <div class="port-hover-overlay">
+          <span class="port-tag" data-i18n="p1_type">Video Ads</span>
+          <span class="port-name" data-i18n="p1_client">Lareta Salón de Eventos</span>
+        </div>
+      </div>
+
+      <!-- Card 2 — Dr. Lara -->
+      <div class="port-card reveal-right rd2">
+        <img class="port-img"
+             src="Brand%20Assets/Pagina%20Dise%C3%B1os/2.png"
+             alt="Dr. Jorge Lara — Maxilofacial" loading="eager">
+        <div class="port-tint"></div>
+        <div class="port-base-overlay">
+          <span class="port-tag" data-i18n="p2_type">Creative Ads</span>
+          <span class="port-name" data-i18n="p2_client">Dr. Jorge Lara — Maxilofacial</span>
+        </div>
+        <div class="port-hover-overlay">
+          <span class="port-tag" data-i18n="p2_type">Creative Ads</span>
+          <span class="port-name" data-i18n="p2_client">Dr. Jorge Lara — Maxilofacial</span>
+        </div>
+      </div>
+
+      <!-- Card 3 — Carnes Selectas -->
+      <div class="port-card reveal-left rd3">
+        <img class="port-img"
+             src="Brand%20Assets/Pagina%20Dise%C3%B1os/3.png"
+             alt="Carnes Selectas San Andrés" loading="eager">
+        <div class="port-tint"></div>
+        <div class="port-base-overlay">
+          <span class="port-tag" data-i18n="p3_type">Creative Ad Desktop</span>
+          <span class="port-name" data-i18n="p3_client">Carnes Selectas San Andrés</span>
+        </div>
+        <div class="port-hover-overlay">
+          <span class="port-tag" data-i18n="p3_type">Creative Ad Desktop</span>
+          <span class="port-name" data-i18n="p3_client">Carnes Selectas San Andrés</span>
+        </div>
+      </div>
+
+      <!-- Card 4 — Mueblería -->
+      <div class="port-card reveal-right rd4">
+        <img class="port-img"
+             src="Brand%20Assets/Pagina%20Dise%C3%B1os/4.png"
+             alt="Mueblería del Centro" loading="eager">
+        <div class="port-tint"></div>
+        <div class="port-base-overlay">
+          <span class="port-tag" data-i18n="p4_type">Creative Ad Desktop</span>
+          <span class="port-name" data-i18n="p4_client">Mueblería del Centro</span>
+        </div>
+        <div class="port-hover-overlay">
+          <span class="port-tag" data-i18n="p4_type">Creative Ad Desktop</span>
+          <span class="port-name" data-i18n="p4_client">Mueblería del Centro</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     REVIEWS
+══════════════════════════════════════════ -->
+<section id="resenas"
+  style="padding:100px 0;background:#07080A;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+              width:700px;height:280px;pointer-events:none;
+              background:radial-gradient(ellipse,rgba(200,255,62,.04) 0%,transparent 68%);"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;"
+           data-i18n="reviews_label">RESEÑAS</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;margin-bottom:16px;"
+          data-i18n="reviews_title">Lo que dicen nuestros clientes</h2>
+      <!-- Overall rating -->
+      <div class="reveal"
+           style="display:inline-flex;align-items:center;gap:10px;
+                  padding:10px 20px;border-radius:99px;
+                  background:#0F1115;border:1px solid rgba(255,255,255,.07);">
+        <span style="color:#C8FF3E;font-size:1rem;letter-spacing:2px;">★★★★★</span>
+        <span style="font-size:.85rem;color:#9CA3AF;font-weight:500;">5.0 · 7 reseñas</span>
+        <span style="color:#374151;font-size:.75rem;">·</span>
+        <!-- Google G -->
+        <svg width="14" height="14" viewBox="0 0 24 24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <span style="font-size:.82rem;color:#6B7280;">Google</span>
+      </div>
+    </div>
+
+    <!-- Reviews grid -->
+    <div style="display:grid;grid-template-columns:1fr;gap:16px;" class="sm-2col lg-3col">
+
+      <!-- Review 1 — Inmobiliaria JJ13 -->
+      <div class="svc-card reveal-scale rd1" style="padding:24px 22px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
+                      background:linear-gradient(135deg,#C8FF3E 0%,#7C3AED 100%);
+                      display:flex;align-items:center;justify-content:center;
+                      font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#07080A;">I</div>
+          <div>
+            <div style="font-weight:600;font-size:.87rem;color:#F0F0EA;line-height:1.2;">Inmobiliaria JJ13</div>
+            <div style="font-size:.7rem;color:#6B7280;margin-top:2px;">Julio 2024</div>
+          </div>
+        </div>
+        <div style="color:#C8FF3E;font-size:.82rem;letter-spacing:3px;margin-bottom:10px;">★★★★★</div>
+        <p style="font-size:.84rem;color:#9CA3AF;line-height:1.65;margin:0;">
+          "Recomendado al 100%. Tenemos ya 1 año trabajando con Aura y estamos muy satisfechos con sus trabajos, personal y el excelente rendimiento que hemos obtenido."
+        </p>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:5px;opacity:.45;">
+          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-size:.68rem;color:#6B7280;">Google Maps</span>
+        </div>
+      </div>
+
+      <!-- Review 2 — ABACO -->
+      <div class="svc-card reveal-scale rd2" style="padding:24px 22px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
+                      background:linear-gradient(135deg,#3B82F6 0%,#06B6D4 100%);
+                      display:flex;align-items:center;justify-content:center;
+                      font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#fff;">A</div>
+          <div>
+            <div style="font-weight:600;font-size:.87rem;color:#F0F0EA;line-height:1.2;">ABACO</div>
+            <div style="font-size:.7rem;color:#6B7280;margin-top:2px;">Julio 2024</div>
+          </div>
+        </div>
+        <div style="color:#C8FF3E;font-size:.82rem;letter-spacing:3px;margin-bottom:10px;">★★★★★</div>
+        <p style="font-size:.84rem;color:#9CA3AF;line-height:1.65;margin:0;">
+          "Contraté el servicio de página web y quedó exactamente como lo quería. ¡100% recomendados!"
+        </p>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:5px;opacity:.45;">
+          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-size:.68rem;color:#6B7280;">Google Maps</span>
+        </div>
+      </div>
+
+      <!-- Review 3 — AMCO -->
+      <div class="svc-card reveal-scale rd3" style="padding:24px 22px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
+                      background:linear-gradient(135deg,#F59E0B 0%,#EF4444 100%);
+                      display:flex;align-items:center;justify-content:center;
+                      font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#fff;">A</div>
+          <div>
+            <div style="font-weight:600;font-size:.87rem;color:#F0F0EA;line-height:1.2;">AMCO</div>
+            <div style="font-size:.7rem;color:#6B7280;margin-top:2px;">Julio 2024</div>
+          </div>
+        </div>
+        <div style="color:#C8FF3E;font-size:.82rem;letter-spacing:3px;margin-bottom:10px;">★★★★★</div>
+        <p style="font-size:.84rem;color:#9CA3AF;line-height:1.65;margin:0;">
+          "Excelente servicio, muy profesionales y atentos. Los recomiendo sin dudarlo."
+        </p>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:5px;opacity:.45;">
+          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-size:.68rem;color:#6B7280;">Google Maps</span>
+        </div>
+      </div>
+
+      <!-- Review 4 — CCM Facturas -->
+      <div class="svc-card reveal-scale rd1" style="padding:24px 22px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
+                      background:linear-gradient(135deg,#7C3AED 0%,#C8FF3E 100%);
+                      display:flex;align-items:center;justify-content:center;
+                      font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#07080A;">C</div>
+          <div>
+            <div style="font-weight:600;font-size:.87rem;color:#F0F0EA;line-height:1.2;">CCM Facturas</div>
+            <div style="font-size:.7rem;color:#6B7280;margin-top:2px;">Noviembre 2023</div>
+          </div>
+        </div>
+        <div style="color:#C8FF3E;font-size:.82rem;letter-spacing:3px;margin-bottom:10px;">★★★★★</div>
+        <p style="font-size:.84rem;color:#9CA3AF;line-height:1.65;margin:0;">
+          "Excelente servicio, buen trato y tiempos de entrega rápidos. ¡100% recomendados!!"
+        </p>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:5px;opacity:.45;">
+          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-size:.68rem;color:#6B7280;">Google Maps</span>
+        </div>
+      </div>
+
+      <!-- Review 5 — AmarIssa Yoga -->
+      <div class="svc-card reveal-scale rd2" style="padding:24px 22px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;flex-shrink:0;
+                      background:linear-gradient(135deg,#EC4899 0%,#8B5CF6 100%);
+                      display:flex;align-items:center;justify-content:center;
+                      font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#fff;">A</div>
+          <div>
+            <div style="font-weight:600;font-size:.87rem;color:#F0F0EA;line-height:1.2;">AmarIssa Yoga y Meditación</div>
+            <div style="font-size:.7rem;color:#6B7280;margin-top:2px;">Julio 2023</div>
+          </div>
+        </div>
+        <div style="color:#C8FF3E;font-size:.82rem;letter-spacing:3px;margin-bottom:10px;">★★★★★</div>
+        <p style="font-size:.84rem;color:#9CA3AF;line-height:1.65;margin:0;">
+          "¡Excelente servicio! Rodrigo ha sido de mucha ayuda, definitivamente volvería a contratarlo."
+        </p>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:5px;opacity:.45;">
+          <svg width="11" height="11" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span style="font-size:.68rem;color:#6B7280;">Google Maps</span>
+        </div>
+      </div>
+
+    </div><!-- / grid -->
+
+    <!-- CTA to Google Maps -->
+    <div class="reveal" style="text-align:center;margin-top:44px;">
+      <a href="https://share.google/Qr60mLICsQ24bT2WU" target="_blank" rel="noopener noreferrer"
+         class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span data-i18n="reviews_cta">Ver todas las reseñas en Google →</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     WHY AURA
+══════════════════════════════════════════ -->
+<section id="nosotros"
+  style="padding:100px 0;background:#0A0B0E;position:relative;overflow:hidden;">
+
+  <!-- Center glow -->
+  <div style="position:absolute;top:50%;left:50%;
+              transform:translate(-50%,-50%);
+              width:600px;height:600px;
+              background:radial-gradient(circle,
+                rgba(200,255,62,.04) 0%,transparent 68%);
+              pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:72px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;"
+           data-i18n="why_label">¿POR QUÉ AURA?</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;"
+          data-i18n-html="why_title">Resultados que hablan<br>por sí solos.</h2>
+    </div>
+
+    <!-- Stats grid 2×2 → 4×1 on md -->
+    <!-- 5-stat grid: 2-col mobile → auto-fit on desktop -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+                gap:40px 20px;max-width:1000px;margin:0 auto 72px;">
+      <!-- $5M+ featured -->
+      <div style="text-align:center;" class="reveal-scale">
+        <div class="big-num" data-count="5" data-suffix="M+" data-prefix="$">$5M+</div>
+        <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
+             data-i18n="stat0_label">En publicidad manejada</div>
+      </div>
+      <div style="text-align:center;" class="reveal-scale rd1">
+        <div class="big-num" data-count="40" data-suffix="+">40+</div>
+        <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
+             data-i18n="stat1_label">Clientes Activos</div>
+      </div>
+      <div style="text-align:center;" class="reveal-scale rd2">
+        <div class="big-num" data-count="200" data-suffix="+">200+</div>
+        <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
+             data-i18n="stat2_label">Proyectos Completados</div>
+      </div>
+      <div style="text-align:center;" class="reveal-scale rd3">
+        <div class="big-num" data-count="6" data-suffix="">6</div>
+        <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
+             data-i18n="stat3_label">Años de Experiencia</div>
+      </div>
+      <div style="text-align:center;" class="reveal-scale rd4">
+        <div class="big-num" data-count="97" data-suffix="%">97%</div>
+        <div style="font-size:.82rem;color:#6B7280;margin-top:8px;"
+             data-i18n="stat4_label">Tasa de Satisfacción</div>
+      </div>
+    </div>
+
+    <!-- Fade divider -->
+    <div class="fade-line reveal" style="max-width:500px;margin:0 auto 64px;"></div>
+
+    <!-- Countries served strip -->
+    <div class="reveal"
+         style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;
+                  border-radius:10px;background:#0F1115;
+                  border:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:1.1rem;">🇲🇽</span>
+        <span style="font-size:.82rem;color:#9CA3AF;" data-i18n="country_mx">México</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;
+                  border-radius:10px;background:#0F1115;
+                  border:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:1.1rem;">🇺🇸</span>
+        <span style="font-size:.82rem;color:#9CA3AF;" data-i18n="country_us">Estados Unidos</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;
+                  border-radius:10px;background:#0F1115;
+                  border:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:1.1rem;">🇨🇦</span>
+        <span style="font-size:.82rem;color:#9CA3AF;" data-i18n="country_ca">Canadá</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;
+                  border-radius:10px;background:#0F1115;
+                  border:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:1.1rem;">🌐</span>
+        <span style="font-size:.82rem;color:#9CA3AF;" data-i18n="country_global">y más países</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════ -->
+<section id="contacto"
+  style="padding:100px 0;background:#07080A;position:relative;overflow:hidden;">
+
+  <!-- BG orbs -->
+  <div style="position:absolute;bottom:-8%;right:-4%;
+              width:480px;height:480px;
+              background:radial-gradient(circle,rgba(124,58,237,.08) 0%,transparent 68%);
+              pointer-events:none;"></div>
+  <div style="position:absolute;top:-6%;left:-4%;
+              width:380px;height:380px;
+              background:radial-gradient(circle,rgba(200,255,62,.05) 0%,transparent 68%);
+              pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+
+    <!-- Two-column layout -->
+    <div style="display:grid;grid-template-columns:1fr;gap:64px;align-items:start;"
+         class="md-2col">
+
+      <!-- Left: copy -->
+      <div class="reveal">
+        <div class="label-pill" style="margin-bottom:18px;"
+             data-i18n="contact_label">CONTACTO</div>
+        <h2 class="h-lg" style="color:#F0F0EA;margin-bottom:18px;"
+            data-i18n-html="contact_title">Hagamos algo<br>increíble juntos.</h2>
+        <p class="body-copy" style="font-size:1rem;margin-bottom:40px;"
+           data-i18n="contact_sub">
+          Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.
+        </p>
+
+        <!-- Contact details -->
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <!-- Email -->
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:10px;
+                        background:#0F1115;border:1px solid rgba(255,255,255,.07);
+                        display:flex;align-items:center;justify-content:center;
+                        flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                      stroke="#C8FF3E" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 6L12 13L2 6"
+                      stroke="#C8FF3E" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <a href="mailto:support@auraagencia.net"
+               style="font-size:.9rem;color:#9CA3AF;text-decoration:none;transition:color .2s ease;"
+               onmouseover="this.style.color='#C8FF3E'" onmouseout="this.style.color='#9CA3AF'">
+              support@auraagencia.net
+            </a>
+          </div>
+          <!-- Phone -->
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:10px;
+                        background:#0F1115;border:1px solid rgba(255,255,255,.07);
+                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                      stroke="#C8FF3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:3px;">
+              <a href="https://wa.me/526251181513"
+                 style="font-size:.9rem;color:#9CA3AF;text-decoration:none;transition:color .2s ease;"
+                 onmouseover="this.style.color='#C8FF3E'" onmouseout="this.style.color='#9CA3AF'">
+                +52 625-118-1513
+              </a>
+              <span style="font-size:.74rem;color:#4B5563;line-height:1.4;"
+                    data-i18n="contact_phone_note">
+                Manda WhatsApp o mensaje — no contestamos llamadas de números desconocidos.
+              </span>
+            </div>
+          </div>
+          <!-- Location -->
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:40px;height:40px;border-radius:10px;
+                        background:#0F1115;border:1px solid rgba(255,255,255,.07);
+                        display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
+                      fill="#C8FF3E"/>
+              </svg>
+            </div>
+            <span style="font-size:.9rem;color:#9CA3AF;">Chihuahua, México</span>
+          </div>
+          <!-- WhatsApp CTA -->
+          <a href="https://wa.me/526251181513" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex;align-items:center;gap:10px;margin-top:6px;
+                    padding:12px 20px;border-radius:10px;
+                    background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.22);
+                    color:#25D366;font-size:.88rem;font-weight:600;text-decoration:none;
+                    width:fit-content;
+                    transition:background .2s ease, border-color .2s ease, transform .22s cubic-bezier(.34,1.56,.64,1);"
+             onmouseover="this.style.background='rgba(37,211,102,.16)';this.style.borderColor='rgba(37,211,102,.4)';this.style.transform='translateY(-3px)'"
+             onmouseout="this.style.background='rgba(37,211,102,.08)';this.style.borderColor='rgba(37,211,102,.22)';this.style.transform='translateY(0)'"
+             onfocus="this.style.outline='2px solid #25D366';this.style.outlineOffset='3px'"
+             onblur="this.style.outline='none'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span data-i18n="contact_whatsapp">Escríbenos por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="reveal">
+        <!-- Form header -->
+        <div style="background:#0F1115;border:1px solid rgba(200,255,62,.12);
+                    border-radius:14px;padding:14px 18px;margin-bottom:14px;
+                    display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1.1rem;">⚡</span>
+          <p style="font-size:.82rem;color:#9CA3AF;line-height:1.5;"
+             data-i18n-html="form_note">
+            Respuesta en menos de <strong style="color:#C8FF3E;">24 horas.</strong>
+            Sin compromiso — solo dinos qué necesitas.
+          </p>
+        </div>
+
+        <form id="contact-form"
+              onsubmit="handleSubmit(event)"
+              style="display:flex;flex-direction:column;gap:12px;">
+
+          <!-- Name + Email -->
+          <div style="display:grid;grid-template-columns:1fr;gap:12px;"
+               class="sm-2col">
+            <input type="text" class="field" required
+                   data-i18n-placeholder="form_name"
+                   placeholder="Tu nombre">
+            <input type="email" class="field" required
+                   data-i18n-placeholder="form_email"
+                   placeholder="Correo electrónico">
+          </div>
+
+          <!-- Company + Phone -->
+          <div style="display:grid;grid-template-columns:1fr;gap:12px;"
+               class="sm-2col">
+            <input type="text" class="field"
+                   data-i18n-placeholder="form_company"
+                   placeholder="Empresa (opcional)">
+            <input type="tel" class="field"
+                   data-i18n-placeholder="form_phone_field"
+                   placeholder="WhatsApp / Teléfono">
+          </div>
+
+          <!-- Service -->
+          <select class="field" required
+                  data-i18n-select="form_service_opts">
+            <option value="" disabled selected>¿Qué servicio te interesa?</option>
+            <option>Facebook &amp; Instagram Ads</option>
+            <option>Google Ads</option>
+            <option>Video Ads</option>
+            <option>Página Web</option>
+            <option>Paquete completo</option>
+            <option>Tengo dudas / Quiero información</option>
+          </select>
+
+          <!-- Message -->
+          <textarea class="field" rows="4" required
+                    data-i18n-placeholder="form_message"
+                    placeholder="Cuéntanos sobre tu negocio o proyecto..."
+                    style="resize:vertical;min-height:110px;"></textarea>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-lime"
+                  style="width:100%;font-size:.95rem;padding:15px 28px;"
+                  data-i18n="form_submit">
+            Quiero que me contacten →
+          </button>
+
+          <!-- Trust line -->
+          <p style="text-align:center;font-size:.75rem;color:#4B5563;"
+             data-i18n="form_trust">
+            🔒 Tu información es privada. Nunca spam.
+          </p>
+
+          <!-- Success message -->
+          <div id="form-success"
+               style="display:none;text-align:center;padding:14px;
+                      border-radius:10px;background:rgba(200,255,62,.08);
+                      border:1px solid rgba(200,255,62,.2);
+                      color:#C8FF3E;font-size:.9rem;font-weight:600;"
+               data-i18n="form_success">
+            ¡Mensaje enviado! Te contactaremos pronto.
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:#0A0B0E;
+               border-top:1px solid rgba(255,255,255,.05);
+               padding:56px 0 32px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+    <!-- Top row -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;
+                gap:48px;margin-bottom:48px;">
+
+      <!-- Brand -->
+      <div style="max-width:280px;">
+        <div class="wordmark" style="display:block;margin-bottom:14px;">
+          AURA<span class="dot">°</span>
+        </div>
+        <p class="body-copy" style="font-size:.875rem;"
+           data-i18n="footer_desc">
+          Agencia de publicidad digital con presencia global, especializada
+          en hacer brillar marcas alrededor del mundo.
+        </p>
+      </div>
+
+      <!-- Link columns -->
+      <div style="display:flex;flex-wrap:wrap;gap:48px;">
+        <div>
+          <p style="font-family:Syne,sans-serif;font-weight:700;
+                    font-size:.78rem;letter-spacing:.1em;
+                    text-transform:uppercase;color:#F0F0EA;margin-bottom:16px;"
+             data-i18n="footer_col_services">Servicios</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li><a href="#servicios" class="f-link">Facebook &amp; Instagram Ads</a></li>
+            <li><a href="#servicios" class="f-link">Google Ads</a></li>
+            <li><a href="#servicios" class="f-link" data-i18n="svc4_title">Páginas Web</a></li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-family:Syne,sans-serif;font-weight:700;
+                    font-size:.78rem;letter-spacing:.1em;
+                    text-transform:uppercase;color:#F0F0EA;margin-bottom:16px;"
+             data-i18n="footer_col_company">Empresa</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li><a href="#nosotros"  class="f-link" data-i18n="nav_about">Nosotros</a></li>
+            <li><a href="#portafolio"class="f-link" data-i18n="nav_portfolio">Portafolio</a></li>
+            <li><a href="#contacto"  class="f-link" data-i18n="nav_contact">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="fade-line" style="margin-bottom:24px;"></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;
+                align-items:center;gap:12px;">
+      <p style="font-size:.75rem;color:#4B5563;" data-i18n="footer_rights">
+        © 2024 Aura Digital Agency. Todos los derechos reservados.
+      </p>
+      <span style="font-size:.75rem;color:#374151;letter-spacing:.05em;"
+            data-i18n="hero_meta">Meta Certified</span>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+/* ── i18n TRANSLATIONS ─────────────────────────────────────── */
+const T = {
+  es: {
+    nav_services:'Servicios', nav_portfolio:'Portafolio',
+    nav_pricing:'Precios', nav_about:'Nosotros', nav_contact:'Contacto', nav_cta:'Contáctanos',
+
+    hero_meta:'Meta Certified',
+    hero_h1:'Más clientes,<br><span style="color:#C8FF3E;">más ventas.</span>',
+    hero_sub:'Publicidad en Facebook, Instagram y Google que atrae clientes de verdad. Calidad de agencia de EE.UU. al precio de México.',
+    hero_cta1:'Quiero más clientes →', hero_cta2:'Ver trabajos',
+    hero_pill1:'Clientes Activos', hero_pill2:'Proyectos', hero_pill3:'Años de Exp.',
+
+    pricing_label:'PRECIOS',
+    pricing_title:'Precios transparentes,<br>sin sorpresas.',
+    pricing_sub:'Precios de entrada para que sepas qué esperar. El costo final se ajusta según tus objetivos y presupuesto publicitario.',
+    pricing_from:'Desde',
+    pricing_popular:'Más popular',
+    pricing_requested:'Más solicitado',
+    pricing_card_cta:'Quiero empezar →',
+    pricing_note:'¿Necesitas algo diferente? El presupuesto publicitario va aparte del fee de gestión. Contáctanos y te enviamos una propuesta detallada sin costo.',
+    pricing_cta:'Cotización personalizada →',
+    pr1_title:'Facebook & Instagram Ads', pr1_unit:'USD / mes',
+    pr1_f1:'Gestión completa de campañas — FB e Instagram activos',
+    pr1_f2:'Segmentación de audiencia ideal — llegamos a quien puede comprarte',
+    pr1_f3:'Hasta 3 diseños de imagen por mes listos para publicar',
+    pr1_f4:'Textos y copy persuasivos que convierten visitas en clientes',
+    pr1_f5:'Testeo y optimización continua para bajar tu costo por cliente',
+    pr1_f6:'Reporte mensual — leads, costo por cliente y métricas clave',
+    pr1_f7:'Monitoreo y ajustes en tiempo real',
+    pr1_f8:'Mensaje automático de primer contacto incluido',
+    pr2_title:'Google Ads', pr2_unit:'USD / mes',
+    pr2_f1:'Investigación de palabras clave',
+    pr2_f2:'Campañas de búsqueda, display y YouTube',
+    pr2_f3:'Copywriting para anuncios',
+    pr2_f4:'Optimización y ajuste de pujas',
+    pr2_f5:'Reporte mensual de rendimiento',
+    pr3_title:'Página Web', pr3_unit:'USD · pago único',
+    pr3_f1:'Diseño personalizado a tu imagen y marca',
+    pr3_f2:'Se ve perfecto en celular y computadora',
+    pr3_f3:'Botón de WhatsApp automático + formulario de contacto',
+    pr3_f4:'Pixel de Facebook incluido (para retargeting y anuncios)',
+    pr3_f5:'Galería de fotos + sección de reseñas / testimonios',
+    pr3_f6:'Hosting siempre incluido sin costo · Dominio gratis el 1er año',
+    pr3_f7:'Entrega en 8 días o menos — 2 rondas de revisiones incluidas',
+    pr3_extra:'Mantenimiento opcional: hasta 3 cambios/mes · soporte WhatsApp',
+
+    services_label:'SERVICIOS', services_title:'Lo que hacemos',
+    services_sub:'Ponemos tu negocio frente a la gente correcta, en el momento correcto. Sin complicaciones, con resultados reales.',
+    svc1_title:'Facebook & Instagram Ads',
+    svc1_desc:'Llegamos exactamente a quien tú quieres. Creamos anuncios que la gente ve, entiende y en los que hace clic — sin gastar de más.',
+    svc2_title:'Google Ads',
+    svc2_desc:'Aparece primero cuando alguien busca lo que tú vendes. Captamos clientes que ya tienen la intención de comprar.',
+    svc4_title:'Páginas Web',
+    svc4_desc:'Tu negocio en internet, bien hecho. Sitios rápidos y profesionales diseñados para convertir visitantes en clientes.',
+    tag_search:'Búsqueda', tag_design:'Diseño',
+
+    vp_label:'Agencia con base en México',
+    vp_title:'La calidad de una agencia de EE.UU.<br><span style="color:#C8FF3E;">Al precio de México.</span>',
+    vp_body:'Estamos asentados en México, lo que nos permite ofrecer el mismo nivel de estrategia, creatividad y resultados que una agencia de EE.UU. o Canadá — a una fracción del costo. Tu presupuesto rinde más. Tus resultados, igual de sólidos.',
+    vp_cta:'Obtén una cotización gratis →',
+    vp_b1_title:'Equipo bilingüe (ES / EN)',
+    vp_b1_sub:'Atendemos clientes de México, EE.UU. y Canadá sin problema.',
+    vp_b2_title:'Hasta 60% más accesible',
+    vp_b2_sub:'Que agencias equivalentes en EE.UU. o Canadá. Misma calidad, mejor precio.',
+    vp_b3_title:'Resultados medibles, nivel global',
+    vp_b3_sub:'Clientes activos en México, Estados Unidos y Canadá lo confirman.',
+
+    portfolio_label:'PORTAFOLIO',
+    portfolio_title:'Trabajo real,<br>resultados reales.',
+    portfolio_sub:'Casos de estudio de marcas que confiaron en Aura para crecer.',
+    p1_type:'Video Ads',           p1_client:'Lareta Salón de Eventos',
+    p2_type:'Creative Ads',        p2_client:'Dr. Jorge Lara — Maxilofacial',
+    p3_type:'Creative Ad Desktop', p3_client:'Carnes Selectas San Andrés',
+    p4_type:'Creative Ad Desktop', p4_client:'Mueblería del Centro',
+
+    reviews_label:'RESEÑAS',
+    reviews_title:'Lo que dicen nuestros clientes',
+    reviews_cta:'Ver todas las reseñas en Google →',
+
+    why_label:'¿POR QUÉ AURA?',
+    why_title:'Resultados que hablan<br>por sí solos.',
+    stat0_label:'En publicidad manejada',
+    stat1_num:'40+',  stat1_label:'Clientes Activos',
+    stat2_num:'200+', stat2_label:'Proyectos Completados',
+    stat3_num:'6',    stat3_label:'Años de Experiencia',
+    stat4_num:'97%', stat4_label:'Tasa de Satisfacción',
+
+    contact_label:'CONTACTO',
+    contact_title:'Hagamos algo<br>increíble juntos.',
+    contact_sub:'Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas.',
+    form_name:'Tu nombre', form_email:'Correo electrónico',
+    form_company:'Empresa (opcional)', form_phone_field:'WhatsApp / Teléfono',
+    form_note:'Respuesta en menos de <strong style="color:#C8FF3E;">24 horas.</strong> Sin compromiso — solo dinos qué necesitas.',
+    form_service_opts:['¿Qué servicio te interesa?','Facebook & Instagram Ads','Google Ads','Página Web','Paquete completo (Ads + Web)','Tengo dudas / Quiero información'],
+    form_message:'Cuéntanos sobre tu negocio o proyecto...',
+    form_submit:'Quiero que me contacten →',
+    form_trust:'🔒 Tu información es privada. Nunca spam.',
+    form_success:'¡Mensaje enviado! Te contactaremos pronto.',
+    contact_phone_note:'Manda WhatsApp o mensaje — no contestamos llamadas de números desconocidos.',
+    contact_whatsapp:'Escríbenos por WhatsApp',
+    country_mx:'México', country_us:'Estados Unidos', country_ca:'Canadá', country_global:'y más países',
+
+    footer_desc:'Agencia de publicidad digital con presencia global, especializada en hacer brillar marcas alrededor del mundo.',
+    footer_col_services:'Servicios', footer_col_company:'Empresa',
+    footer_rights:'© {year} Aura Digital Agency. Todos los derechos reservados.',
+  },
+  en: {
+    nav_services:'Services', nav_portfolio:'Portfolio',
+    nav_pricing:'Pricing', nav_about:'About', nav_contact:'Contact', nav_cta:'Contact Us',
+
+    hero_meta:'Meta Certified',
+    hero_h1:'More clients,<br><span style="color:#C8FF3E;">more sales.</span>',
+    hero_sub:'Facebook, Instagram & Google advertising that attracts real customers. US-level quality at Mexican prices.',
+    hero_cta1:'I want more clients →', hero_cta2:'See our work',
+    hero_pill1:'Active Clients', hero_pill2:'Projects', hero_pill3:'Years of Exp.',
+
+    pricing_label:'PRICING',
+    pricing_title:'Transparent pricing,<br>no surprises.',
+    pricing_sub:'Starting prices so you know what to expect. Final cost is tailored to your goals and ad budget.',
+    pricing_from:'Starting at',
+    pricing_popular:'Most popular',
+    pricing_requested:'Most requested',
+    pricing_card_cta:"Let's get started →",
+    pricing_note:"Need something different? Ad spend is separate from the management fee. Contact us and we'll send you a detailed proposal at no cost.",
+    pricing_cta:'Get a custom quote →',
+    pr1_title:'Facebook & Instagram Ads', pr1_unit:'USD / month',
+    pr1_f1:'Full campaign management — FB & Instagram set up and running',
+    pr1_f2:'Ideal audience targeting — we reach people who can actually buy',
+    pr1_f3:'Up to 3 image designs per month ready to publish',
+    pr1_f4:'Persuasive copy and texts that turn visits into customers',
+    pr1_f5:'Continuous testing & optimization to lower your cost per lead',
+    pr1_f6:'Monthly report — leads, cost per client and key metrics',
+    pr1_f7:'Real-time monitoring and adjustments',
+    pr1_f8:'Automatic first-contact message included',
+    pr2_title:'Google Ads', pr2_unit:'USD / month',
+    pr2_f1:'Keyword research',
+    pr2_f2:'Search, display & YouTube campaigns',
+    pr2_f3:'Ad copywriting',
+    pr2_f4:'Bid optimization and adjustments',
+    pr2_f5:'Monthly performance report',
+    pr3_title:'Website', pr3_unit:'USD · one-time',
+    pr3_f1:'Custom design tailored to your brand and image',
+    pr3_f2:'Looks perfect on mobile and desktop',
+    pr3_f3:'Automatic WhatsApp button + contact form',
+    pr3_f4:'Facebook Pixel included (for retargeting and ads)',
+    pr3_f5:'Photo gallery + reviews / testimonials section',
+    pr3_f6:'Hosting always included free · Domain free the 1st year',
+    pr3_f7:'Delivery in 8 days or less — 2 revision rounds included',
+    pr3_extra:'Optional maintenance: up to 3 changes/month · WhatsApp support',
+
+    services_label:'SERVICES', services_title:'What we do',
+    services_sub:"We put your business in front of the right people, at the right time. No fluff — just real results.",
+    svc1_title:'Facebook & Instagram Ads',
+    svc1_desc:"We reach exactly who you want. Ads people actually see, understand, and click on — without wasting your budget.",
+    svc2_title:'Google Ads',
+    svc2_desc:"Show up first when someone searches for what you sell. We capture customers who are already ready to buy.",
+    svc4_title:'Web Design',
+    svc4_desc:"Your business online, done right. Fast, professional sites designed to turn visitors into paying customers.",
+    tag_search:'Search', tag_design:'Design',
+
+    vp_label:'Mexico-Based Agency',
+    vp_title:'US-agency quality.<br><span style="color:#C8FF3E;">At Mexican prices.</span>',
+    vp_body:"We're based in Mexico, which lets us deliver the same level of strategy, creativity, and results as a top US or Canadian agency — at a fraction of the cost. Your budget goes further. Your results stay world-class.",
+    vp_cta:'Get a free quote →',
+    vp_b1_title:'Bilingual team (EN / ES)',
+    vp_b1_sub:'We serve clients in Mexico, the US, and Canada without missing a beat.',
+    vp_b2_title:'Up to 60% more affordable',
+    vp_b2_sub:'Than equivalent agencies in the US or Canada. Same quality, better price.',
+    vp_b3_title:'Measurable results, global level',
+    vp_b3_sub:'Active clients in Mexico, the United States, and Canada back this up.',
+
+    portfolio_label:'PORTFOLIO',
+    portfolio_title:'Real work,<br>real results.',
+    portfolio_sub:'Case studies from brands that trusted Aura to grow.',
+    p1_type:'Video Ads',           p1_client:'Lareta Salón de Eventos',
+    p2_type:'Creative Ads',        p2_client:'Dr. Jorge Lara — Maxillofacial',
+    p3_type:'Creative Ad Desktop', p3_client:'Carnes Selectas San Andrés',
+    p4_type:'Creative Ad Desktop', p4_client:'Mueblería del Centro',
+
+    reviews_label:'REVIEWS',
+    reviews_title:'What our clients say',
+    reviews_cta:'See all reviews on Google →',
+
+    why_label:'WHY AURA?',
+    why_title:'Results that speak<br>for themselves.',
+    stat0_label:'In ad spend managed',
+    stat1_num:'40+',  stat1_label:'Active Clients',
+    stat2_num:'200+', stat2_label:'Projects Completed',
+    stat3_num:'6',    stat3_label:'Years of Experience',
+    stat4_num:'97%', stat4_label:'Satisfaction Rate',
+
+    contact_label:'CONTACT',
+    contact_title:"Let's build something<br>incredible together.",
+    contact_sub:"Tell us about your project and we'll get back to you within 24 hours.",
+    form_name:'Your name', form_email:'Email address',
+    form_company:'Company (optional)', form_phone_field:'WhatsApp / Phone',
+    form_note:'Response within <strong style="color:#C8FF3E;">24 hours.</strong> No commitment — just tell us what you need.',
+    form_service_opts:['What service are you interested in?','Facebook & Instagram Ads','Google Ads','Website','Full package (Ads + Web)','I have questions / Just looking for info'],
+    form_message:'Tell us about your business or project...',
+    form_submit:'Get in touch →',
+    form_trust:'🔒 Your info is private. No spam, ever.',
+    form_success:"Message sent! We'll be in touch soon.",
+    contact_phone_note:'Send a WhatsApp or text — we do not answer calls from unknown numbers.',
+    contact_whatsapp:'Message us on WhatsApp',
+    country_mx:'Mexico', country_us:'United States', country_ca:'Canada', country_global:'and more',
+
+    footer_desc:'Global digital advertising agency specialized in making brands shine worldwide.',
+    footer_col_services:'Services', footer_col_company:'Company',
+    footer_rights:'© {year} Aura Digital Agency. All rights reserved.',
+  }
+};
+
+/* ── i18n ENGINE ───────────────────────────────────────────── */
+var currentLang = localStorage.getItem('aura-lang') || 'es';
+
+var CURRENT_YEAR = new Date().getFullYear();
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('aura-lang', lang);
+  document.documentElement.lang = lang;
+  var t = T[lang];
+
+  /* textContent */
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if (t[k] != null) el.textContent = t[k].replace('{year}', CURRENT_YEAR);
+  });
+
+  /* innerHTML (for spans / line breaks) */
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+    var k = el.getAttribute('data-i18n-html');
+    if (t[k] != null) el.innerHTML = t[k];
+  });
+
+  /* placeholder */
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var k = el.getAttribute('data-i18n-placeholder');
+    if (t[k] != null) el.placeholder = t[k];
+  });
+
+  /* select options */
+  document.querySelectorAll('[data-i18n-select]').forEach(function(sel){
+    var k   = sel.getAttribute('data-i18n-select');
+    var opts = t[k];
+    if (Array.isArray(opts)) {
+      sel.innerHTML = opts.map(function(o, i){
+        return '<option value="' + (i===0?'':o) + '"' +
+               (i===0?' disabled':'') + '>' + o + '</option>';
+      }).join('');
+      sel.value = '';
+    }
+  });
+
+  /* lang button active state */
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+/* ── MOBILE MENU ───────────────────────────────────────────── */
+var menuOpen = false;
+function toggleMenu(){
+  menuOpen = !menuOpen;
+  var nav = document.getElementById('mob-nav');
+  var ham = document.getElementById('ham');
+  nav.classList.toggle('open', menuOpen);
+  nav.setAttribute('aria-hidden', String(!menuOpen));
+  ham.setAttribute('aria-expanded', String(menuOpen));
+  if (menuOpen) {
+    document.getElementById('hl1').style.transform='rotate(45deg) translate(3.5px,3.5px)';
+    document.getElementById('hl2').style.opacity='0';
+    document.getElementById('hl2').style.transform='scaleX(0)';
+    document.getElementById('hl3').style.transform='rotate(-45deg) translate(3.5px,-3.5px)';
+  } else {
+    ['hl1','hl2','hl3'].forEach(function(id){
+      var el=document.getElementById(id);
+      el.style.transform=''; el.style.opacity='';
+    });
+  }
+}
+function closeMenu(){ if(menuOpen) toggleMenu(); }
+window.addEventListener('resize', function(){ if(window.innerWidth>=768&&menuOpen) closeMenu(); });
+
+/* ── SCROLL REVEAL — all variants ──────────────────────────── */
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+},{ threshold:.1, rootMargin:'0px 0px -36px 0px' });
+
+document.querySelectorAll(
+  '.reveal, .reveal-left, .reveal-right, .reveal-scale'
+).forEach(function(el){ ro.observe(el); });
+
+/* ── COUNTER ANIMATION ──────────────────────────────────────── */
+/* Eased count-up, no external libs — pure rAF */
+function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+function runCounter(el, target, prefix, suffix, duration) {
+  if (el._counted) return;   /* run only once */
+  el._counted = true;
+  prefix = prefix || '';
+  var start = performance.now();
+  function tick(now) {
+    var p = Math.min((now - start) / duration, 1);
+    el.textContent = prefix + Math.round(easeOutCubic(p) * target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+var counterObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (!e.isIntersecting) return;
+    var el     = e.target;
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    var prefix = el.getAttribute('data-prefix') || '';
+    runCounter(el, target, prefix, suffix, 1600);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll('[data-count]').forEach(function(el) {
+  counterObs.observe(el);
+});
+
+/* ── FORM SUBMIT ───────────────────────────────────────────── */
+function handleSubmit(e){
+  e.preventDefault();
+  var s = document.getElementById('form-success');
+  s.style.display='block';
+  e.target.reset();
+  setTimeout(function(){ s.style.display='none'; }, 5000);
+}
+
+/* ── INIT ──────────────────────────────────────────────────── */
+setLang(currentLang);
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO WAVE CANVAS — dynamic-wave-canvas-background
+     Transpiled from React component to vanilla JS.
+     No external dependencies — pure Web API.
+════════════════════════════════════════════════════════════ -->
+<script>
+(function initHeroWave() {
+  var canvas = document.getElementById('hero-wave');
+  if (!canvas) return;
+
+  var ctx = canvas.getContext('2d');
+  var SCALE = 2; // render at 1/2 resolution, scale up → big perf gain
+
+  /* Off-screen canvas for low-res pixel manipulation */
+  var off    = document.createElement('canvas');
+  var offCtx = off.getContext('2d');
+  var offData, offArr, width, height;
+
+  function resize() {
+    var hero    = document.getElementById('hero');
+    var w       = hero.offsetWidth  || window.innerWidth;
+    var h       = hero.offsetHeight || window.innerHeight;
+    canvas.width  = w;
+    canvas.height = h;
+    width         = Math.ceil(w / SCALE);
+    height        = Math.ceil(h / SCALE);
+    off.width     = width;
+    off.height    = height;
+    offData       = offCtx.createImageData(width, height);
+    offArr        = offData.data;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* Pre-computed trig tables — 4× faster than Math.sin/cos */
+  var TAU = Math.PI * 2;
+  var TABLE_SIZE = 1024;
+  var SIN = new Float32Array(TABLE_SIZE);
+  var COS = new Float32Array(TABLE_SIZE);
+  for (var i = 0; i < TABLE_SIZE; i++) {
+    var a = (i / TABLE_SIZE) * TAU;
+    SIN[i] = Math.sin(a);
+    COS[i] = Math.cos(a);
+  }
+
+  function fsin(x) {
+    var n = ((x % TAU + TAU) % TAU / TAU * TABLE_SIZE) | 0;
+    return SIN[n & 1023];
+  }
+  function fcos(x) {
+    var n = ((x % TAU + TAU) % TAU / TAU * TABLE_SIZE) | 0;
+    return COS[n & 1023];
+  }
+
+  var t0 = Date.now();
+  var animId = null;
+
+  /* Pause when tab is hidden — saves CPU */
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      if (animId) { cancelAnimationFrame(animId); animId = null; }
+    } else {
+      if (!animId) animId = requestAnimationFrame(render);
+    }
+  });
+
+  function render() {
+    var t    = (Date.now() - t0) * 0.001;
+    var invH = 1 / height;
+    var arr  = offArr;
+
+    for (var y = 0; y < height; y++) {
+      var uy = (2 * y - height) * invH;
+      for (var x = 0; x < width; x++) {
+        var ux = (2 * x - width) * invH;
+
+        /* Wave accumulation — 4 iterations (original algorithm) */
+        var aa = 0, dd = 0;
+        for (var j = 0; j < 4; j++) {
+          aa += fcos(j - dd + t * 0.5 - aa * ux);
+          dd += fsin(j * uy + aa);
+        }
+
+        /* Colour mapping: dark purple-blue tones */
+        var wave      = (fsin(aa) + fcos(dd)) * 0.5;
+        var intensity = 0.3 + 0.4 * wave;
+        var base      = 0.1  + 0.15 * fcos(ux + uy + t * 0.3);
+        var blue      = 0.2  * fsin(aa * 1.5 + t * 0.2);
+        var purple    = 0.15 * fcos(dd * 2   + t * 0.1);
+
+        var r = Math.max(0, Math.min(1, base + purple * 0.8)) * intensity;
+        var g = Math.max(0, Math.min(1, base + blue   * 0.6)) * intensity;
+        var b = Math.max(0, Math.min(1, base + blue   * 1.2 + purple * 0.4)) * intensity;
+
+        var idx     = (y * width + x) << 2; /* × 4 */
+        arr[idx]     = r * 255;
+        arr[idx + 1] = g * 255;
+        arr[idx + 2] = b * 255;
+        arr[idx + 3] = 255;
+      }
+    }
+
+    offCtx.putImageData(offData, 0, 0);
+    ctx.imageSmoothingEnabled = false;           /* pixel-perfect upscale */
+    ctx.drawImage(off, 0, 0, canvas.width, canvas.height);
+
+    animId = requestAnimationFrame(render);
+  }
+
+  /* Start after a short delay so fonts/images load first */
+  setTimeout(function() { animId = requestAnimationFrame(render); }, 200);
+})();
+</script>
+
+</body>
+</html>
