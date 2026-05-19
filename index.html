@@ -877,12 +877,108 @@
     @media (min-width: 768px) {
       .md-2col { grid-template-columns: 1fr 1fr !important; }
       .md-4col { grid-template-columns: repeat(4,1fr) !important; }
-      /* Hide mobile CTA banner on desktop — the two-col layout is self-explanatory */
       #mobile-cta-banner { display: none !important; }
     }
     @media (min-width: 1024px) {
       .lg-4col { grid-template-columns: repeat(4,1fr) !important; }
       .lg-3col { grid-template-columns: repeat(3,1fr) !important; }
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE OPTIMIZATIONS ≤ 767px
+    ═══════════════════════════════════════ */
+    @media (max-width: 767px) {
+
+      /* 1 ── Reduce section vertical padding */
+      section { padding-top:  60px !important;
+                padding-bottom: 60px !important; }
+
+      /* 2 ── Headings: tight but readable */
+      .h-xl { font-size: clamp(2.2rem, 10vw, 2.8rem) !important;
+               line-height: 1.06 !important; }
+      .h-lg { font-size: clamp(1.65rem, 7.5vw, 2.2rem) !important;
+               line-height: 1.1 !important; }
+
+      /* 3 ── Hero stat pills → single row of 3 */
+      .stat-pill {
+        padding: 9px 12px !important;
+        flex: 1 1 calc(33% - 8px) !important;
+        justify-content: center !important;
+        min-width: 0 !important;
+      }
+      .stat-pill-num  { font-size: 1.15rem !important; }
+      .stat-pill-label{ font-size: .7rem !important;   }
+
+      /* 4 ── Hero CTAs: full-width stacked */
+      .btn-lime, .btn-ghost {
+        width: 100% !important;
+        padding: 15px 20px !important;
+        font-size: .92rem !important;
+      }
+
+      /* 5 ── Prevent iOS input zoom (font-size must be ≥ 16px) */
+      .field, .form-field, input, textarea, select {
+        font-size: 16px !important;
+      }
+
+      /* 6 ── Service cards: comfortable padding */
+      .svc-card { padding: 22px 18px !important; }
+
+      /* 7 ── Pricing cards: top margin for floating chip */
+      #precios .c-item,
+      #precios [style*="position:relative"] { margin-top: 18px !important; }
+
+      /* 8 ── Value prop card: tighter padding */
+      #ventaja .vp-card-glow { padding: 28px 20px !important; }
+      #ventaja .vp-card-glow h2 {
+        font-size: clamp(1.45rem, 6.5vw, 2rem) !important;
+      }
+
+      /* 9 ── Stats section: 2-column grid */
+      #nosotros [style*="grid-template-columns:1fr 1fr"] {
+        gap: 28px 16px !important;
+      }
+      .big-num { font-size: clamp(1.9rem, 9vw, 2.8rem) !important; }
+
+      /* 10 ── Portfolio cards: enforce aspect-ratio on mobile */
+      .port-card { aspect-ratio: 4/3 !important; }
+
+      /* 11 ── Contact: form gap */
+      #contact-form { gap: 11px !important; }
+      #contact-grid  { gap: 36px !important; }
+
+      /* 12 ── Footer: stack columns with less gap */
+      footer [style*="gap:48px"] { gap: 32px !important; }
+      footer [style*="gap:48px"] > div:first-child { max-width: 100% !important; }
+
+      /* 13 ── Carousel: consistent height on mobile */
+      .c-item.svc-card { min-height: auto !important; }
+
+      /* 14 ── Touch targets: minimum 44×44px */
+      .nav-a, .mob-a, .f-link, .lang-btn { min-height: 44px;
+        display: inline-flex; align-items: center; }
+
+      /* 15 ── Label pills: slightly smaller */
+      .label-pill { font-size: .65rem !important; padding: 5px 12px !important; }
+
+      /* 16 ── Section inner padding */
+      #resenas  .c-viewport,
+      #servicios > div,
+      #portafolio > div,
+      #precios > div,
+      #nosotros > div,
+      #ventaja > div { padding-left: 18px !important;
+                       padding-right: 18px !important; }
+
+      /* 17 ── Verified/countries strip: wrap nicely */
+      #nosotros [style*="flex-wrap:wrap"] { gap: 8px !important; }
+    }
+
+    /* Extra small ≤ 380px (SE, Galaxy A) */
+    @media (max-width: 380px) {
+      .h-xl  { font-size: 2rem !important; }
+      .h-lg  { font-size: 1.5rem !important; }
+      .aura-wordmark { font-size: .95rem !important; }
     }
   </style>
 </head>
