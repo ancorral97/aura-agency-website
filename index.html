@@ -244,14 +244,18 @@
        LOGO WORDMARK
     ───────────────────────────────────────── */
     .wordmark {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
       color: #F0F0EA;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
     .wordmark .dot { color: #C8FF3E; }
+    .wordmark svg { flex-shrink: 0; }
 
     /* ─────────────────────────────────────────
        NAVBAR (floating layer)
@@ -853,7 +857,15 @@
               display:flex;align-items:center;justify-content:space-between;">
 
     <!-- Logo -->
-    <a href="#" class="wordmark">AurusCortex<span class="dot">IA</span></a>
+    <a href="#" class="wordmark">
+      <svg width="17" height="19" viewBox="0 0 17 19" fill="none" aria-hidden="true">
+        <path d="M8.5 1L16 5.25V13.75L8.5 18L1 13.75V5.25L8.5 1Z"
+              stroke="#C8FF3E" stroke-width="1.4"
+              fill="rgba(200,255,62,0.07)"/>
+        <circle cx="8.5" cy="9.5" r="2.2" fill="#C8FF3E"/>
+      </svg>
+      AurusCortex<span class="dot">IA</span>
+    </a>
 
     <!-- Desktop nav links -->
     <nav id="desk-nav" style="display:none;align-items:center;gap:44px;">
@@ -2120,7 +2132,13 @@
 
       <!-- Brand -->
       <div style="max-width:280px;">
-        <div class="wordmark" style="display:block;margin-bottom:14px;">
+        <div class="wordmark" style="margin-bottom:14px;">
+          <svg width="17" height="19" viewBox="0 0 17 19" fill="none" aria-hidden="true">
+            <path d="M8.5 1L16 5.25V13.75L8.5 18L1 13.75V5.25L8.5 1Z"
+                  stroke="#C8FF3E" stroke-width="1.4"
+                  fill="rgba(200,255,62,0.07)"/>
+            <circle cx="8.5" cy="9.5" r="2.2" fill="#C8FF3E"/>
+          </svg>
           AurusCortex<span class="dot">IA</span>
         </div>
         <p class="body-copy" style="font-size:.875rem;"
