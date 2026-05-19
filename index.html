@@ -862,6 +862,139 @@
     .f-link:focus-visible{ outline: 2px solid #C8FF3E; border-radius: 3px; }
 
     /* ─────────────────────────────────────────
+       FLOATING WHATSAPP BUTTON
+    ───────────────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45), 0 2px 8px rgba(0,0,0,.3);
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+    }
+    .wa-float:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 28px rgba(37,211,102,.6), 0 3px 12px rgba(0,0,0,.3);
+    }
+    .wa-float:active { transform: scale(.97); }
+    /* Pulse ring */
+    .wa-float::before {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,.4);
+      animation: waPulse 2.2s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(.9); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────────
+       CLIENT LOGOS MARQUEE
+    ───────────────────────────────────────── */
+    .marquee-viewport { overflow: hidden; }
+    .marquee-track {
+      display: flex; gap: 16px;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .client-card {
+      flex-shrink: 0;
+      height: 70px; padding: 12px 24px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .client-card:hover {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(200,255,62,.2);
+    }
+    .client-card img {
+      height: 38px; width: auto; max-width: 150px;
+      object-fit: contain;
+      filter: grayscale(.2) brightness(1.1);
+      opacity: .85;
+    }
+
+    /* ─────────────────────────────────────────
+       PROCESS "CÓMO TRABAJAMOS"
+    ───────────────────────────────────────── */
+    .step-card {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 28px 24px;
+      background: #0F1115;
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 16px;
+      transition: border-color .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .step-card:hover {
+      border-color: rgba(200,255,62,.2);
+      transform: translateY(-4px);
+    }
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800; font-size: 2rem;
+      color: rgba(200,255,62,.18);
+      line-height: 1; flex-shrink: 0; min-width: 48px;
+    }
+
+    /* ─────────────────────────────────────────
+       FOUNDER SECTION
+    ───────────────────────────────────────── */
+    .founder-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(200,255,62,.3);
+      box-shadow: 0 0 40px rgba(200,255,62,.1), 0 8px 32px rgba(0,0,0,.5);
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       FAQ ACCORDION
+    ───────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .faq-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; gap: 16px; text-align: left;
+    }
+    .faq-btn:focus-visible { outline: 2px solid #C8FF3E; border-radius: 4px; }
+    .faq-q {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: .95rem; color: #F0F0EA; line-height: 1.4;
+    }
+    .faq-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(200,255,62,.1); border: 1px solid rgba(200,255,62,.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform .3s ease, background .2s ease;
+      color: #C8FF3E; font-size: 1rem; line-height: 1;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(200,255,62,.18); }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .4s cubic-bezier(.16,1,.3,1);
+    }
+    .faq-answer p {
+      font-size: .9rem; color: #9CA3AF; line-height: 1.72;
+      padding-bottom: 20px;
+    }
+
+    /* ─────────────────────────────────────────
        VERIFIED BADGE
     ───────────────────────────────────────── */
     .verified-glow {
@@ -1291,6 +1424,37 @@
 
 
 <!-- ══════════════════════════════════════════
+     CLIENT LOGOS MARQUEE
+══════════════════════════════════════════ -->
+<section id="clientes" style="padding:56px 0;background:#07080A;border-top:1px solid rgba(255,255,255,.05);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;text-align:center;margin-bottom:32px;">
+    <p style="font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+               color:#6B7280;" data-i18n="clients_label">Empresas que confían en nosotros</p>
+  </div>
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/1.png" alt="Constructora Inmobiliaria JJ13"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/2.png" alt="Dr. Jorge Lara Contreras"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/3.png" alt="Clínica ALBE"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/4.png" alt="Flash Corporation"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/5.png" alt="Lareta Salón de Eventos"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/6.png" alt="CCM Dental Group"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/7.png" alt="Mueblería del Centro"></div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/1.png" alt="Constructora Inmobiliaria JJ13"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/2.png" alt="Dr. Jorge Lara Contreras"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/3.png" alt="Clínica ALBE"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/4.png" alt="Flash Corporation"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/5.png" alt="Lareta Salón de Eventos"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/6.png" alt="CCM Dental Group"></div>
+      <div class="client-card"><img src="Brand%20Assets/Logos%20Cambio%20Formato/7.png" alt="Mueblería del Centro"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
      SERVICES
 ══════════════════════════════════════════ -->
 <section id="servicios"
@@ -1668,6 +1832,55 @@
 
 
 <!-- ══════════════════════════════════════════
+     PROCESO — CÓMO TRABAJAMOS
+══════════════════════════════════════════ -->
+<section id="proceso" style="padding:100px 0;background:#07080A;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);
+              width:700px;height:300px;pointer-events:none;
+              background:radial-gradient(ellipse,rgba(200,255,62,.04) 0%,transparent 68%);"></div>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:64px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;" data-i18n="process_label">CÓMO TRABAJAMOS</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;margin-bottom:14px;" data-i18n="process_title">Simple. Claro. Con resultados.</h2>
+      <p class="body-copy reveal" style="font-size:1rem;max-width:500px;margin:0 auto;" data-i18n="process_sub">
+        Del primer mensaje hasta tus primeros clientes — así es el proceso.
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr;gap:16px;" class="md-2col">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#F0F0EA;margin-bottom:8px;" data-i18n="step1_title">Platiquemos gratis</div>
+          <p class="body-copy" style="font-size:.875rem;" data-i18n="step1_desc">Me cuentas sobre tu negocio y tus objetivos. Sin compromiso, sin ventas de presión — solo platicamos para ver si podemos ayudarte.</p>
+        </div>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#F0F0EA;margin-bottom:8px;" data-i18n="step2_title">Diseñamos tu estrategia</div>
+          <p class="body-copy" style="font-size:.875rem;" data-i18n="step2_desc">Creamos un plan personalizado según tu mercado, competencia y presupuesto. Tú lo apruebas antes de que lancemos algo.</p>
+        </div>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#F0F0EA;margin-bottom:8px;" data-i18n="step3_title">Lanzamos y optimizamos</div>
+          <p class="body-copy" style="font-size:.875rem;" data-i18n="step3_desc">Activamos tus campañas y las ajustamos constantemente. El primer mes es de aprendizaje — los resultados más sólidos llegan a partir del 2° mes.</p>
+        </div>
+      </div>
+      <div class="step-card reveal reveal-delay-4">
+        <div class="step-num">04</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#F0F0EA;margin-bottom:8px;" data-i18n="step4_title">Reportes y crecimiento</div>
+          <p class="body-copy" style="font-size:.875rem;" data-i18n="step4_desc">Cada mes recibes un reporte claro: leads generados, costo por cliente y métricas clave. Siempre sabes en qué se está invirtiendo tu dinero.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
      PORTFOLIO
 ══════════════════════════════════════════ -->
 <section id="portafolio"
@@ -1931,6 +2144,72 @@
 
 
 <!-- ══════════════════════════════════════════
+     FOUNDER
+══════════════════════════════════════════ -->
+<section id="fundador" style="padding:100px 0;background:#07080A;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:50%;right:-5%;transform:translateY(-50%);
+              width:500px;height:500px;pointer-events:none;
+              background:radial-gradient(circle,rgba(200,255,62,.05) 0%,transparent 68%);"></div>
+  <div style="max-width:1000px;margin:0 auto;padding:0 24px;">
+    <div style="display:flex;gap:52px;align-items:center;flex-wrap:wrap;" class="reveal">
+
+      <!-- Photo -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;flex-shrink:0;">
+        <img src="Brand%20Assets/Foto%20mia/yoprocopia-modified.png"
+             alt="Rodrigo Corral — Fundador AurusCortexIA"
+             class="founder-photo">
+        <!-- LinkedIn link -->
+        <a href="https://www.linkedin.com/in/rodrigo-corral79/" target="_blank" rel="noopener noreferrer"
+           style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;
+                  border-radius:8px;background:rgba(10,102,194,.1);
+                  border:1px solid rgba(10,102,194,.3);
+                  color:#5BA8FF;font-size:.78rem;font-weight:600;
+                  text-decoration:none;letter-spacing:.04em;
+                  transition:background .2s ease,transform .2s ease;"
+           onmouseover="this.style.background='rgba(10,102,194,.2)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(10,102,194,.1)';this.style.transform='none'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="4" stroke="#5BA8FF" stroke-width="1.8"/>
+            <path d="M7 10V17M7 7V7.5" stroke="#5BA8FF" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M11 17V13.5C11 11.5 17 11 17 13.5V17M11 10V17" stroke="#5BA8FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <!-- Bio -->
+      <div style="flex:1;min-width:260px;">
+        <div class="label-pill" style="margin-bottom:16px;" data-i18n="founder_label">FUNDADOR</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:800;
+                   font-size:clamp(1.6rem,4vw,2.2rem);color:#F0F0EA;
+                   letter-spacing:-0.02em;line-height:1.1;margin-bottom:8px;"
+            data-i18n="founder_name">Rodrigo Corral</h2>
+        <p style="font-size:.85rem;color:#C8FF3E;font-weight:600;
+                  letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;"
+           data-i18n="founder_role">Fundador &amp; CEO · Meta Certified Advertiser</p>
+        <p class="body-copy" style="font-size:.95rem;margin-bottom:24px;"
+           data-i18n="founder_bio">
+          Con más de 6 años especializándome en publicidad digital, fundé AurusCortexIA con una misión clara: que cualquier negocio en México, EE.UU. o Canadá pueda acceder a campañas de alto rendimiento sin pagar precios inflados. Soy Meta Certified y he tenido el privilegio de ayudar a más de 40 negocios a crecer con Facebook Ads, Google Ads y páginas web que realmente convierten.
+        </p>
+        <!-- Quick facts -->
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="padding:6px 14px;border-radius:99px;background:rgba(200,255,62,.07);
+                       border:1px solid rgba(200,255,62,.15);font-size:.78rem;
+                       font-weight:600;color:#C8FF3E;">✓ Meta Certified</span>
+          <span style="padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.05);
+                       border:1px solid rgba(255,255,255,.08);font-size:.78rem;
+                       font-weight:500;color:#9CA3AF;" data-i18n="founder_fact1">+6 años de experiencia</span>
+          <span style="padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.05);
+                       border:1px solid rgba(255,255,255,.08);font-size:.78rem;
+                       font-weight:500;color:#9CA3AF;" data-i18n="founder_fact2">+$5M en publicidad manejada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
      WHY AURA
 ══════════════════════════════════════════ -->
 <section id="nosotros"
@@ -2018,6 +2297,86 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FAQ
+══════════════════════════════════════════ -->
+<section id="faq" style="padding:100px 0;background:#07080A;">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="label-pill reveal" style="margin-bottom:18px;" data-i18n="faq_label">PREGUNTAS FRECUENTES</div>
+      <h2 class="h-lg reveal" style="color:#F0F0EA;" data-i18n="faq_title">Todo lo que necesitas saber</h2>
+    </div>
+    <div id="faq-list" class="reveal">
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q1">¿Cuánto tiempo tarda en verse resultados?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a1">El primer mes se destina a configuración, pruebas y aprendizaje del algoritmo. Los resultados más sólidos y el menor costo por cliente llegan a partir del 2° y 3° mes, cuando la campaña ya está optimizada para tu negocio.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q2">¿Necesito un presupuesto mínimo para los anuncios?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a2">Recomendamos al menos $200-300 USD al mes de pauta publicitaria (aparte del fee de gestión) para tener suficientes datos y optimizar bien las campañas.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q3">¿Necesito tener página web para contratar anuncios?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a3">No. Podemos dirigir el tráfico directamente a tu WhatsApp, perfil de Facebook o un formulario de contacto. Si quieres una página web, también la desarrollamos.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q4">¿Hacen contrato anual o hay multa por cancelar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a4">No. Trabajamos mes a mes. Sin contratos eternos ni multas por cancelar. Queremos ganarnos tu confianza con resultados, no con letras pequeñas.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q5">¿Cómo recibo los reportes y con qué frecuencia?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a5">Recibes un reporte mensual con las métricas clave: leads generados, costo por lead, alcance, impresiones y resultados de campaña. Además, tenemos soporte directo por WhatsApp durante todo el mes.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q6">¿Trabajan con negocios pequeños o solo empresas grandes?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a6">Trabajamos con negocios de todos los tamaños — desde emprendedores locales hasta empresas establecidas. Nuestros planes están diseñados para que cualquier negocio pueda acceder a publicidad digital de calidad.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q7">¿Qué diferencia a AurusCortexIA de otras agencias?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a7">Somos Meta Certified con más de 6 años de experiencia y más de $5 millones en publicidad manejada. Nuestros precios son 40-60% más bajos que agencias equivalentes en EE.UU. — sin sacrificar calidad. Atendemos clientes en México, Estados Unidos y Canadá.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q" data-i18n="faq_q8">¿En qué zona o país trabajan?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer"><p data-i18n="faq_a8">Somos una agencia digital con sede en Cuauhtémoc, Chihuahua, México — y atendemos clientes de forma remota en todo México, Estados Unidos y Canadá sin problema.</p></div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -2400,6 +2759,42 @@ const T = {
     hero_cta1:'Quiero más clientes →', hero_cta2:'Ver trabajos',
     hero_pill1:'Clientes Activos', hero_pill2:'Proyectos', hero_pill3:'Años de Exp.',
 
+    clients_label:'Empresas que confían en nosotros',
+
+    process_label:'CÓMO TRABAJAMOS', process_title:'Simple. Claro. Con resultados.',
+    process_sub:'Del primer mensaje hasta tus primeros clientes — así es el proceso.',
+    step1_title:'Platiquemos gratis',
+    step1_desc:'Me cuentas sobre tu negocio y tus objetivos. Sin compromiso, sin ventas de presión — solo platicamos para ver si podemos ayudarte.',
+    step2_title:'Diseñamos tu estrategia',
+    step2_desc:'Creamos un plan personalizado según tu mercado, competencia y presupuesto. Tú lo apruebas antes de que lancemos algo.',
+    step3_title:'Lanzamos y optimizamos',
+    step3_desc:'Activamos tus campañas y las ajustamos constantemente. El primer mes es de aprendizaje — los resultados más sólidos llegan a partir del 2° mes.',
+    step4_title:'Reportes y crecimiento',
+    step4_desc:'Cada mes recibes un reporte claro: leads generados, costo por cliente y métricas clave. Siempre sabes en qué se está invirtiendo tu dinero.',
+
+    founder_label:'FUNDADOR', founder_name:'Rodrigo Corral',
+    founder_role:'Fundador & CEO · Meta Certified Advertiser',
+    founder_bio:'Con más de 6 años especializándome en publicidad digital, fundé AurusCortexIA con una misión clara: que cualquier negocio en México, EE.UU. o Canadá pueda acceder a campañas de alto rendimiento sin pagar precios inflados. Soy Meta Certified y he tenido el privilegio de ayudar a más de 40 negocios a crecer con Facebook Ads, Google Ads y páginas web que realmente convierten.',
+    founder_fact1:'+6 años de experiencia', founder_fact2:'+$5M en publicidad manejada',
+
+    faq_label:'PREGUNTAS FRECUENTES', faq_title:'Todo lo que necesitas saber',
+    faq_q1:'¿Cuánto tiempo tarda en verse resultados?',
+    faq_a1:'El primer mes se destina a configuración, pruebas y aprendizaje del algoritmo. Los resultados más sólidos y el menor costo por cliente llegan a partir del 2° y 3° mes, cuando la campaña ya está optimizada para tu negocio.',
+    faq_q2:'¿Necesito un presupuesto mínimo para los anuncios?',
+    faq_a2:'Recomendamos al menos $200-300 USD al mes de pauta publicitaria (aparte del fee de gestión) para tener suficientes datos y optimizar bien las campañas.',
+    faq_q3:'¿Necesito tener página web para contratar anuncios?',
+    faq_a3:'No. Podemos dirigir el tráfico directamente a tu WhatsApp, perfil de Facebook o un formulario de contacto. Si quieres una página web, también la desarrollamos.',
+    faq_q4:'¿Hacen contrato anual o hay multa por cancelar?',
+    faq_a4:'No. Trabajamos mes a mes. Sin contratos eternos ni multas por cancelar. Queremos ganarnos tu confianza con resultados, no con letras pequeñas.',
+    faq_q5:'¿Cómo recibo los reportes y con qué frecuencia?',
+    faq_a5:'Recibes un reporte mensual con las métricas clave: leads generados, costo por lead, alcance, impresiones y resultados de campaña. Además, tenemos soporte directo por WhatsApp durante todo el mes.',
+    faq_q6:'¿Trabajan con negocios pequeños o solo empresas grandes?',
+    faq_a6:'Trabajamos con negocios de todos los tamaños — desde emprendedores locales hasta empresas establecidas. Nuestros planes están diseñados para que cualquier negocio pueda acceder a publicidad digital de calidad.',
+    faq_q7:'¿Qué diferencia a AurusCortexIA de otras agencias?',
+    faq_a7:'Somos Meta Certified con más de 6 años de experiencia y más de $5 millones en publicidad manejada. Nuestros precios son 40-60% más bajos que agencias equivalentes en EE.UU. — sin sacrificar calidad. Atendemos clientes en México, Estados Unidos y Canadá.',
+    faq_q8:'¿En qué zona o país trabajan?',
+    faq_a8:'Somos una agencia digital con sede en Cuauhtémoc, Chihuahua, México — y atendemos clientes de forma remota en todo México, Estados Unidos y Canadá sin problema.',
+
     pricing_label:'PRECIOS',
     pricing_title:'Precios transparentes,<br>sin sorpresas.',
     pricing_sub:'Precios de entrada para que sepas qué esperar. El costo final se ajusta según tus objetivos y presupuesto publicitario.',
@@ -2505,6 +2900,42 @@ const T = {
     hero_sub:'Facebook, Instagram & Google advertising that attracts real customers. US-level quality at Mexican prices.',
     hero_cta1:'I want more clients →', hero_cta2:'See our work',
     hero_pill1:'Active Clients', hero_pill2:'Projects', hero_pill3:'Years of Exp.',
+
+    clients_label:'Companies that trust us',
+
+    process_label:'HOW WE WORK', process_title:'Simple. Clear. With results.',
+    process_sub:'From your first message to your first customers — here\'s the process.',
+    step1_title:'Let\'s talk for free',
+    step1_desc:'You tell me about your business and goals. No commitment, no pressure — we just chat to see if we can help.',
+    step2_title:'We design your strategy',
+    step2_desc:'We create a personalized plan based on your market, competition and budget. You approve everything before we launch.',
+    step3_title:'We launch and optimize',
+    step3_desc:'We activate your campaigns and constantly fine-tune them. The first month is for learning — the strongest results come from the 2nd month on.',
+    step4_title:'Reports and growth',
+    step4_desc:'Every month you get a clear report: leads generated, cost per client and key metrics. You always know where your money is going.',
+
+    founder_label:'FOUNDER', founder_name:'Rodrigo Corral',
+    founder_role:'Founder & CEO · Meta Certified Advertiser',
+    founder_bio:'With 6+ years specializing in digital advertising, I founded AurusCortexIA with one clear mission: give any business in Mexico, the US or Canada access to high-performance campaigns without paying inflated prices. I\'m Meta Certified and have had the privilege of helping 40+ businesses grow with Facebook Ads, Google Ads and websites that actually convert.',
+    founder_fact1:'+6 years experience', founder_fact2:'+$5M in ad spend managed',
+
+    faq_label:'FAQ', faq_title:'Everything you need to know',
+    faq_q1:'How long does it take to see results?',
+    faq_a1:'The first month goes to setup, testing and algorithm learning. The strongest results and lowest cost per client come from the 2nd and 3rd month, once the campaign is optimized for your business.',
+    faq_q2:'Do I need a minimum budget for ads?',
+    faq_a2:'We recommend at least $200-300 USD/month in ad spend (on top of the management fee) to have enough data to properly optimize campaigns.',
+    faq_q3:'Do I need a website to run ads?',
+    faq_a3:'No. We can send traffic directly to your WhatsApp, Facebook profile or a contact form. If you want a website, we build those too.',
+    faq_q4:'Is there an annual contract or cancellation fee?',
+    faq_a4:'No. We work month to month. No long-term contracts, no cancellation penalties. We want to earn your trust through results, not fine print.',
+    faq_q5:'How and how often do I receive reports?',
+    faq_a5:'You receive a monthly report with key metrics: leads generated, cost per lead, reach, impressions and campaign results. Plus, we have direct WhatsApp support throughout the month.',
+    faq_q6:'Do you work with small businesses or only large companies?',
+    faq_a6:'We work with businesses of all sizes — from local entrepreneurs to established companies. Our plans are designed so any business can access quality digital advertising.',
+    faq_q7:'What makes AurusCortexIA different from other agencies?',
+    faq_a7:'We\'re Meta Certified with 6+ years of experience and $5M+ in ad spend managed. Our prices are 40-60% lower than equivalent US agencies — without sacrificing quality. We serve clients in Mexico, the US and Canada.',
+    faq_q8:'What area or country do you serve?',
+    faq_a8:'We\'re a digital agency based in Cuauhtémoc, Chihuahua, México — and we serve clients remotely across all of Mexico, the United States and Canada.',
 
     pricing_label:'PRICING',
     pricing_title:'Transparent pricing,<br>no surprises.',
@@ -2675,6 +3106,23 @@ function toggleMenu(){
 }
 function closeMenu(){ if(menuOpen) toggleMenu(); }
 window.addEventListener('resize', function(){ if(window.innerWidth>=768&&menuOpen) closeMenu(); });
+
+/* ── FAQ ACCORDION ─────────────────────────────────────────── */
+function toggleFaq(btn) {
+  var item    = btn.parentElement;
+  var answer  = item.querySelector('.faq-answer');
+  var isOpen  = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(function(el) {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+  // Open clicked (if it was closed)
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
 
 /* ── SCROLL REVEAL — all variants ──────────────────────────── */
 var ro = new IntersectionObserver(function(entries){
@@ -2849,6 +3297,17 @@ function handleSubmit(e) {
 /* ── INIT ──────────────────────────────────────────────────── */
 setLang(currentLang);
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FLOATING WHATSAPP BUTTON
+════════════════════════════════════════════════════════════ -->
+<a href="https://wa.me/526251181513" target="_blank" rel="noopener noreferrer"
+   class="wa-float" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
 
 <!-- ═══════════════════════════════════════════════════════════
      HERO WAVE CANVAS — dynamic-wave-canvas-background
