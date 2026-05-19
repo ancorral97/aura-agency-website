@@ -11,3 +11,7 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+.vercel
+gen-og.mjs
+og-image.html
