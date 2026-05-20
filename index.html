@@ -922,6 +922,18 @@
       mix-blend-mode:hard-light; opacity:.55;
       pointer-events:none; will-change:transform;
     }
+    /* Dark overlay so text stays readable over the gradient */
+    .bga-overlay {
+      position:absolute; inset:0; z-index:1;
+      background:rgba(5,4,14,.62);
+      pointer-events:none;
+    }
+    /* Text contrast fixes inside contact section */
+    #contacto .body-copy                      { color:rgba(220,220,215,.9) !important; }
+    #contacto [style*="color:#9CA3AF"]        { color:rgba(220,220,215,.88) !important; }
+    #contacto [style*="color:#6B7280"]        { color:rgba(200,200,195,.82) !important; }
+    #contacto [style*="color:#4B5563"]        { color:rgba(190,190,185,.72) !important; }
+    #contacto [style*="color:#374151"]        { color:rgba(180,180,175,.65) !important; }
 
     /* ─────────────────────────────────────────
        FLOATING WHATSAPP BUTTON
@@ -2482,6 +2494,8 @@
       <div class="bga-orb bga-o5"></div>
       <div class="bga-ptr" id="bga-ptr"></div>
     </div>
+    <!-- Overlay for text readability -->
+    <div class="bga-overlay"></div>
   </div>
 
 
