@@ -925,8 +925,11 @@
     /* Dark overlay so text stays readable over the gradient */
     .bga-overlay {
       position:absolute; inset:0; z-index:1;
-      background:rgba(5,4,14,.62);
+      background:rgba(5,4,14,.52);
       pointer-events:none;
+    }
+    @media (max-width:767px) {
+      .bga-overlay { background:rgba(5,4,14,.28); }
     }
     /* Text contrast fixes inside contact section */
     #contacto .body-copy                      { color:rgba(220,220,215,.9) !important; }
