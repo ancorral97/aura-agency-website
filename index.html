@@ -862,6 +862,68 @@
     .f-link:focus-visible{ outline: 2px solid #C8FF3E; border-radius: 3px; }
 
     /* ─────────────────────────────────────────
+       BACKGROUND GRADIENT ANIMATION
+    ───────────────────────────────────────── */
+    @keyframes bgaMoveVertical {
+      0%,100% { transform:translateY(-50%); }
+      50%      { transform:translateY(50%); }
+    }
+    @keyframes bgaMoveInCircle {
+      0%   { transform:rotate(0deg); }
+      50%  { transform:rotate(180deg); }
+      100% { transform:rotate(360deg); }
+    }
+    @keyframes bgaMoveHorizontal {
+      0%,100% { transform:translateX(-50%) translateY(-10%); }
+      50%      { transform:translateX(50%)  translateY(10%); }
+    }
+    .bga-wrap {
+      position:absolute; inset:0; overflow:hidden; z-index:0;
+      background:linear-gradient(40deg, rgb(3,2,12) 0%, rgb(7,8,10) 100%);
+    }
+    .bga-orbs {
+      position:absolute; inset:0;
+      filter:url(#bgaBlur) blur(40px);
+    }
+    .bga-orb {
+      position:absolute; width:80%; height:80%;
+      top:10%; left:10%; border-radius:50%;
+      mix-blend-mode:hard-light;
+    }
+    .bga-o1 {
+      background:radial-gradient(circle at center, rgba(200,255,62,.55) 0%, rgba(200,255,62,0) 60%) no-repeat;
+      transform-origin:center center;
+      animation:bgaMoveVertical 30s ease infinite; opacity:.9;
+    }
+    .bga-o2 {
+      background:radial-gradient(circle at center, rgba(124,58,237,.7) 0%, rgba(124,58,237,0) 55%) no-repeat;
+      transform-origin:calc(50% - 360px);
+      animation:bgaMoveInCircle 22s reverse infinite;
+    }
+    .bga-o3 {
+      background:radial-gradient(circle at center, rgba(200,255,62,.35) 0%, rgba(200,255,62,0) 55%) no-repeat;
+      transform-origin:calc(50% + 360px);
+      animation:bgaMoveInCircle 38s linear infinite;
+    }
+    .bga-o4 {
+      background:radial-gradient(circle at center, rgba(80,10,160,.7) 0%, rgba(80,10,160,0) 55%) no-repeat;
+      transform-origin:calc(50% - 200px);
+      animation:bgaMoveHorizontal 42s ease infinite; opacity:.65;
+    }
+    .bga-o5 {
+      background:radial-gradient(circle at center, rgba(240,200,40,.5) 0%, rgba(240,200,40,0) 55%) no-repeat;
+      transform-origin:calc(50% - 800px) calc(50% + 800px);
+      animation:bgaMoveInCircle 24s ease infinite; opacity:.7;
+    }
+    .bga-ptr {
+      position:absolute; width:100%; height:100%;
+      top:-50%; left:-50%;
+      background:radial-gradient(circle at center, rgba(200,255,62,.6) 0%, rgba(200,255,62,0) 50%) no-repeat;
+      mix-blend-mode:hard-light; opacity:.55;
+      pointer-events:none; will-change:transform;
+    }
+
+    /* ─────────────────────────────────────────
        FLOATING WHATSAPP BUTTON
     ───────────────────────────────────────── */
     .wa-float {
@@ -2395,8 +2457,33 @@
 <!-- ══════════════════════════════════════════
      CONTACT
 ══════════════════════════════════════════ -->
+<!-- SVG filter for goo effect (global, hidden) -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <filter id="bgaBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo"/>
+      <feBlend in="SourceGraphic" in2="goo"/>
+    </filter>
+  </defs>
+</svg>
+
 <section id="contacto"
-  style="padding:100px 0;background:#07080A;position:relative;overflow:hidden;">
+  style="padding:100px 0;background:transparent;position:relative;overflow:hidden;">
+
+  <!-- Animated gradient background -->
+  <div class="bga-wrap" aria-hidden="true">
+    <div class="bga-orbs">
+      <div class="bga-orb bga-o1"></div>
+      <div class="bga-orb bga-o2"></div>
+      <div class="bga-orb bga-o3"></div>
+      <div class="bga-orb bga-o4"></div>
+      <div class="bga-orb bga-o5"></div>
+      <div class="bga-ptr" id="bga-ptr"></div>
+    </div>
+  </div>
+
 
   <!-- BG orbs -->
   <div style="position:absolute;bottom:-8%;right:-4%;
@@ -3305,6 +3392,34 @@ function handleSubmit(e) {
   buildDots();
   goTo(0);
   resetTimer();
+})();
+
+/* ── BACKGROUND GRADIENT ANIMATION — mouse pointer tracking ── */
+(function() {
+  var section = document.getElementById('contacto');
+  var ptr     = document.getElementById('bga-ptr');
+  if (!section || !ptr) return;
+  var curX = 0, curY = 0, tgX = 0, tgY = 0;
+  section.addEventListener('mousemove', function(e) {
+    var r = section.getBoundingClientRect();
+    tgX = e.clientX - r.left;
+    tgY = e.clientY - r.top;
+  });
+  section.addEventListener('mouseleave', function() {
+    /* drift back to center when mouse leaves */
+    tgX = section.offsetWidth  / 2;
+    tgY = section.offsetHeight / 2;
+  });
+  function tick() {
+    curX += (tgX - curX) / 20;
+    curY += (tgY - curY) / 20;
+    ptr.style.transform = 'translate(' + Math.round(curX) + 'px,' + Math.round(curY) + 'px)';
+    requestAnimationFrame(tick);
+  }
+  /* init pointer at center */
+  tgX = section.offsetWidth / 2;
+  tgY = section.offsetHeight / 2;
+  tick();
 })();
 
 /* ── INIT ──────────────────────────────────────────────────── */
